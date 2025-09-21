@@ -59,6 +59,14 @@ public class Evento {
         }
     }
     
+    public String exibirRelatorio() {
+        return "Nome: " + this.nome
+                + "Descricao: " + this.descricao
+                + "Convidados: " + this.quantidadeConvidados
+                + "Status: " + this.status
+                + "Custo Total: " + this.custoTotal;
+    }
+    
     public String getNome() {
         return nome;
     }
