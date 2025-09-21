@@ -88,12 +88,12 @@ public class Controlador {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
-    public void exibirRelatorioEventos() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public String exibirRelatorioEventos() {
+        return catalogo.exibirRelatorioEventos();
     }
 
-    public void adicionarComodidade(Evento evento, String nome, double preco, Categoria categoria) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void adicionarComodidade(String nomeEvento, String nome, double preco, Categoria categoria) {
+        catalogo.adicionarComodidade(nomeEvento, nome, preco, categoria);
     }
 
     public void removerComodidade(Evento evento, Comodidade comodidade) {

@@ -44,7 +44,16 @@ public class Catalogo {
     public void adicionarEvento(Evento evento) {
 
     }
-
+    
+    public void adicionarComodidade(String nomeEvento, String nome, double preco, Categoria categoria)
+    {
+        for (Evento e : eventos) {
+            if (e.getNome().equals(nomeEvento)) {
+                e.adicionarComodidade(nome, preco, categoria);
+            }
+        }
+    }
+    
     public void alterarStatusEvento(String nomeEvento, Status novoStatus) {
         for (Evento evento : eventos) {
             if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
@@ -80,5 +89,13 @@ public class Catalogo {
                 e.removerComodidade(nomeComodidade);
             }
         }
+    }
+    
+    public String exibirRelatorioEventos(){
+        String relatorio = "";
+        for (Evento e : eventos) {
+            relatorio += e.exibirRelatorio();
+        }
+        return relatorio;
     }
 }

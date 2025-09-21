@@ -6,15 +6,14 @@ package Factory;
 
 import Modelo.Categoria;
 import Modelo.Comodidade;
-import Modelo.Evento;
 
 /**
  *
  * @author Arthur
  */
 public class FactoryComodidade {
-    public Comodidade criarComodidade(Evento evento, String nome, double preco, Categoria categoria)
+    public Comodidade criarComodidade(String nome, double preco, Categoria categoria)
     {
-        
+        return new Comodidade(nome, preco, categoria);
     }
 }

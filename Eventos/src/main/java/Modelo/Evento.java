@@ -4,6 +4,7 @@
  */
 package Modelo;
 
+import Factory.FactoryComodidade;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -169,6 +170,13 @@ public class Evento {
                 comodidades.remove(comodidade);
             }
         }
+    }
+    
+    public void adicionarComodidade(String nome, double preco, Categoria categoria)
+    {
+        FactoryComodidade fComodidade = new FactoryComodidade();
+        Comodidade comodidade = fComodidade.criarComodidade(nome, preco, categoria);
+        comodidades.add(comodidade);
     }
     
 }
