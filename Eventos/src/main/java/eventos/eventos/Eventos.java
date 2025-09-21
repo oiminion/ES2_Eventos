@@ -14,7 +14,4 @@ public class Eventos {
         System.out.println("Hello World!");
         
     }
-    
-    public void teste() {
-    }
 }
