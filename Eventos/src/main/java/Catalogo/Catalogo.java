@@ -45,18 +45,18 @@ public class Catalogo {
 
     }
 
-    public void alterarStatusEvento(Evento evento, Status novoStatus) {
-        for (Evento e : eventos) {
-            if (evento.equals(e)) {
-                e.setStatus(novoStatus);
+    public void alterarStatusEvento(String nomeEvento, Status novoStatus) {
+        for (Evento evento : eventos) {
+            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
+                evento.setStatus(novoStatus);
             }
         }
     }
 
-    public void removerEvento(Evento evento) {
-        for (Evento e : eventos) {
-            if (evento.equals(e)) {
-                eventos.remove(e);
+    public void removerEvento(String nomeEvento) {
+        for (Evento evento : eventos) {
+            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
+                eventos.remove(evento);
             }
         }
     }
