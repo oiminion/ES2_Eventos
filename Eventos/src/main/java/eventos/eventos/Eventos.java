@@ -1,8 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
+
 
 package eventos.eventos;
+
+import Classes.*;
 
 /**
  *
@@ -12,5 +12,9 @@ public class Eventos {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
+        
+    }
+    
+    public void teste() {
     }
 }
