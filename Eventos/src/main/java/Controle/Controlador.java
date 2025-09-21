@@ -1,11 +1,15 @@
 package Controle;
 
 import Catalogo.Catalogo;
+import Factory.FactoryEvento;
+import Factory.FactoryNotificacao;
 import Modelo.Categoria;
 import Modelo.Comodidade;
 import Modelo.Evento;
 import Modelo.Localizacao;
+import Modelo.Notificacao;
 import Modelo.Status;
+import java.util.ArrayList;
 
 
 /**
@@ -15,9 +19,11 @@ import Modelo.Status;
 public class Controlador {
     
     private Catalogo catalogo;
+    private ArrayList<Notificacao> notificacoes;
     
     public Controlador () {
         catalogo = new Catalogo();
+        notificacoes = new ArrayList<>();
     }
 
     public String criarOrganizador(String nome) {
@@ -25,7 +31,12 @@ public class Controlador {
     }
 
     public void adicionarEvento(String nome, String descricao, int quantidadeConvidados, Localizacao localizacao, double precoAcomodacao, String nomeOrganizador) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        FactoryEvento fEvento = new FactoryEvento();
+        Evento novoEvento = fEvento.criarEvento(nome, descricao, quantidadeConvidados, localizacao, precoAcomodacao, nomeOrganizador);
+        catalogo.adicionarEvento(novoEvento);
+        FactoryNotificacao fNotificacao = new FactoryNotificacao();
+        Notificacao notificacao = fNotificacao.criarNotificacao(nome);
+        notificacoes.add(notificacao);
     }
 
     public void cancelarEvento(Evento evento) {

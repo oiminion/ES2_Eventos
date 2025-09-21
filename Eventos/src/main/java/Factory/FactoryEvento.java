@@ -12,8 +12,7 @@ import Modelo.Localizacao;
  * @author Arthur
  */
 public class FactoryEvento {
-    public Evento criarEvento(String nome, String descricao, int quantidadeConvidados, Localizacao localizacao, double precoAcomodacao, String nomeOrganizador)
-    {
-        
+    public Evento criarEvento(String nome, String descricao, int quantidadeConvidados, Localizacao localizacao, double precoAcomodacao, String nomeOrganizador) {
+        return new Evento(nome, descricao, quantidadeConvidados, localizacao, precoAcomodacao, nomeOrganizador);
     }
 }
