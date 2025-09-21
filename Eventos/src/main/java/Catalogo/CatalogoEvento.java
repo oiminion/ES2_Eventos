@@ -28,6 +28,10 @@ public class CatalogoEvento {
     }
     
     public void removerEvento(Evento evento) {
-        
+        for (Evento e : eventos) {
+            if (evento.equals(e)) {
+                eventos.remove(e);
+            }
+        }
     }
 }

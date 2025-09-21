@@ -18,7 +18,8 @@ public class ControladorEvento {
     }
 
     public void cancelarEvento(Evento evento) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        CatalogoEvento catalogoEvento = new CatalogoEvento();
+        catalogoEvento.removerEvento(evento);
     }
 
     public void alterarNomeEvento(Evento evento, String novoNome) {
@@ -54,7 +55,7 @@ public class ControladorEvento {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
-    public Evento buscarEvento() {
+    public Evento buscarEvento(String busca) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
