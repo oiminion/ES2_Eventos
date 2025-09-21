@@ -39,8 +39,8 @@ public class Controlador {
         notificacoes.add(notificacao);
     }
 
-    public void cancelarEvento(Evento evento) {
-        catalogo.cancelarEvento(evento);
+    public void cancelarEvento(String nomeEvento) {
+        catalogo.removerEvento(nomeEvento);
     }
 
     public void alterarNomeEvento(Evento evento, String novoNome) {
@@ -75,8 +75,9 @@ public class Controlador {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
-    public Evento buscarEvento(String busca) {
-        return catalogo.buscarEvento(busca);
+    public String buscarEvento(String busca) {
+        Evento evento = catalogo.buscarEvento(busca);
+        return evento.exibirRelatorio();
     }
 
     public void exibirEvento(Evento evento) {
