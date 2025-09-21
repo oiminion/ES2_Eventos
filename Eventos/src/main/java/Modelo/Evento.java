@@ -25,6 +25,39 @@ public class Evento {
     private ArrayList<Comodidade> comodidades;
     private double custoPorPessoa;
     private double custoTotal;
+
+    public Evento(String nome, String descricao, int quantidadeConvidados, Localizacao localizacao, double precoAcomodacao, String nomeOrganizador) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.quantidadeConvidados = quantidadeConvidados;
+        this.localizacao = localizacao;
+        this.precoAcomodacao = precoAcomodacao;
+        this.nomeOrganizador = nomeOrganizador;
+    }
+    
+    public void alterarNomeComodidade(String nomeComodidade, String novoNome) {
+        for (Comodidade comodidade : comodidades) {
+            if (comodidade.getNome().equalsIgnoreCase(nomeComodidade)) {
+                comodidade.setNome(novoNome);
+            }
+        }
+    }
+
+    public void alterarPrecoComodidade(String nomeComodidade, double novoPreco) {
+        for (Comodidade comodidade : comodidades) {
+            if (comodidade.getNome().equalsIgnoreCase(nomeComodidade)) {
+                comodidade.setPreco(novoPreco);
+            }
+        }
+    }
+
+    public void alterarCategoriaComodidade(String nomeComodidade, Categoria novaCategoria) {
+        for (Comodidade comodidade : comodidades) {
+            if (comodidade.getNome().equalsIgnoreCase(nomeComodidade)) {
+                comodidade.setCategoria(novaCategoria);
+            }
+        }
+    }
     
     public String getNome() {
         return nome;
