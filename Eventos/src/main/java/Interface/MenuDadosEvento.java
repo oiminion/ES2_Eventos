@@ -1,4 +1,4 @@
-package Classes;
+package Interface;
 
 
 
@@ -6,33 +6,34 @@ package Classes;
  *
  * @author Sayu
  */
-public class ControladorComodidade {
+public class MenuDadosEvento {
 
-    public void adicionarComodidade(Evento evento, String nome, double preco, Categoria categoria) {
+    public void alterarNomeEvento() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void removerComodidade(Evento evento, Comodidade comodidade) {
+    public void alterarDescricaoEvento() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void alterarNomeComodidade(Evento evento, Comodidade comodidade, String novoNome) {
+    public void alterarQuantidadeConvidadosEvento() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void alterarPrecoComodidade(Evento evento, Comodidade comodidade, double novoPreco) {
+    public void alterarLocalizacaoEvento() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void alterarCategoriaComodidade(Evento evento, Comodidade comodidade, Categoria novaCategoria) {
+    public void alterarPrecoAcomocadaoEvento() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public double calcularCustoFixo(Evento evento, Comodidade comodidade) {
+    public void alterarStatusEvento() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public double calcularCustoVariavel(Evento evento, Comodidade comodidade) {
+    public void alterarDadosComodidade() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
 }

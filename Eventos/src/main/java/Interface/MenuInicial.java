@@ -1,4 +1,4 @@
-package Classes;
+package Interface;
 
 
 
@@ -6,34 +6,30 @@ package Classes;
  *
  * @author Sayu
  */
-public class MenuDadosEvento {
+public class MenuInicial {
 
-    public void alterarNomeEvento() {
+    public String criarOrganizador() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void alterarDescricaoEvento() {
+    public void adicionarEvento() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void alterarQuantidadeConvidadosEvento() {
+    public void cancelarEvento() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void alterarLocalizacaoEvento() {
+    public void exibirEvento() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void alterarPrecoAcomocadaoEvento() {
+    public void exibirRelatorioEventos() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void alterarStatusEvento() {
+    public void alterarDadosEvento() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void alterarDadosComodidade() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }

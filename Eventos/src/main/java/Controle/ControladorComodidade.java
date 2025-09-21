@@ -1,4 +1,8 @@
-package Classes;
+package Controle;
+
+import Modelo.Categoria;
+import Modelo.Comodidade;
+import Modelo.Evento;
 
 
 
@@ -6,30 +10,33 @@ package Classes;
  *
  * @author Sayu
  */
-public class MenuInicial {
+public class ControladorComodidade {
 
-    public String criarOrganizador() {
+    public void adicionarComodidade(Evento evento, String nome, double preco, Categoria categoria) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void adicionarEvento() {
+    public void removerComodidade(Evento evento, Comodidade comodidade) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void cancelarEvento() {
+    public void alterarNomeComodidade(Evento evento, Comodidade comodidade, String novoNome) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void exibirEvento() {
+    public void alterarPrecoComodidade(Evento evento, Comodidade comodidade, double novoPreco) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void exibirRelatorioEventos() {
+    public void alterarCategoriaComodidade(Evento evento, Comodidade comodidade, Categoria novaCategoria) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void alterarDadosEvento() {
+    public double calcularCustoFixo(Evento evento, Comodidade comodidade) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public double calcularCustoVariavel(Evento evento, Comodidade comodidade) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
