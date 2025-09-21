@@ -52,8 +52,8 @@ public class Controlador {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
-    public void alterarStatusEvento(Evento evento, Status novoStatus) {
-        catalogo.alterarStatusEvento(evento, novoStatus);
+    public void alterarStatusEvento(String nomeEvento, Status novoStatus) {
+        catalogo.alterarStatusEvento(nomeEvento, novoStatus);
     }
 
     public double calcularCustoPorPessoaEvento(Evento evento) {
