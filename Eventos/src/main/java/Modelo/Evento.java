@@ -155,6 +155,12 @@ public class Evento {
         this.custoTotal = custoTotal;
     }
     
-    
+    public void removerComodidade(String nomeComodidade) {
+        for (Comodidade comodidade : comodidades) {
+            if (comodidade.getNome().equalsIgnoreCase(nomeComodidade)) {
+                comodidades.remove(comodidade);
+            }
+        }
+    }
     
 }

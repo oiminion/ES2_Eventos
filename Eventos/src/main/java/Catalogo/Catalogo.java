@@ -68,4 +68,14 @@ public class Catalogo {
     public Evento buscarEvento(String busca) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    public void removerComodidade(String nomeEvento, String nomeComodidade)
+    {
+        for(Evento e : eventos){
+            if(e.getNome().equals(nomeEvento))
+            {
+                e.removerComodidade(nomeComodidade);
+            }
+        }
+    }
 }
