@@ -4,10 +4,16 @@
  */
 package Factory;
 
+import Modelo.Evento;
+import Modelo.Localizacao;
+
 /**
  *
  * @author Arthur
  */
 public class FactoryEvento {
-    
+    public Evento criarEvento(String nome, String descricao, int quantidadeConvidados, Localizacao localizacao, double precoAcomodacao, String nomeOrganizador)
+    {
+        
+    }
 }
