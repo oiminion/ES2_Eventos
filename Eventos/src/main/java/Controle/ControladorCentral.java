@@ -12,6 +12,14 @@ import Modelo.Status;
  * @author Sayu
  */
 public class ControladorCentral {
+    
+    private ControladorEvento controladorEvento;
+    private ControladorComodidade controladorComodidade;
+
+    public ControladorCentral() {
+        this.controladorEvento = new ControladorEvento();
+        this.controladorComodidade = new ControladorComodidade();
+    }
 
     public String criarOrganizador(String nome) {
         throw new UnsupportedOperationException("Not supported yet."); 
@@ -45,8 +53,8 @@ public class ControladorCentral {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
-    public void alterarStatusEvento(Evento evento, Status status) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void alterarStatusEvento(Evento evento, Status novoStatus) {
+        controladorEvento.alterarStatusEvento(evento, novoStatus);
     }
 
     public double calcularCustoPorPessoaEvento(Evento evento) {

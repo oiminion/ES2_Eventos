@@ -5,7 +5,7 @@
 package Catalogo;
 
 import Modelo.Evento;
-import Modelo.Evento;
+import Modelo.Status;
 import java.util.ArrayList;
 
 /**
@@ -17,6 +17,14 @@ public class CatalogoEvento {
     
     public void adicionarEvento(Evento evento) {
         
+    }
+    
+    public void alterarStatusEvento(Evento evento, Status novoStatus) {
+        for (Evento e : eventos) {
+            if (evento.equals(e)) {
+                e.setStatus(novoStatus);
+            }
+        }
     }
     
     public void removerEvento(Evento evento) {

@@ -1,5 +1,6 @@
 package Controle;
 
+import Catalogo.CatalogoEvento;
 import Modelo.Evento;
 import Modelo.Localizacao;
 import Modelo.Status;
@@ -40,8 +41,9 @@ public class ControladorEvento {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
-    public void alterarStatusEvento(Evento evento, Status status) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void alterarStatusEvento(Evento evento, Status novoStatus) {
+        CatalogoEvento catalogoEvento = new CatalogoEvento();
+        catalogoEvento.alterarStatusEvento(evento, novoStatus);
     }
 
     public double calcularCustoPorPessoaEvento(Evento evento) {
