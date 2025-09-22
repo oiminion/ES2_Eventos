@@ -26,6 +26,7 @@ public class Catalogo {
         for (Evento evento : eventos) {
             if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
                 evento.alterarNomeComodidade(nomeComodidade, novoNome);
+                break;
             }
         }
     }
@@ -34,6 +35,7 @@ public class Catalogo {
         for (Evento evento : eventos) {
             if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
                 evento.alterarPrecoComodidade(nomeComodidade, novoPreco);
+                break;
             }
         }
     }
@@ -42,6 +44,7 @@ public class Catalogo {
         for (Evento evento : eventos) {
             if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
                 evento.alterarCategoriaComodidade(nomeComodidade, novaCategoria);
+                break;
             }
         }
     }
@@ -55,6 +58,7 @@ public class Catalogo {
         for (Evento e : eventos) {
             if (e.getNome().equals(nomeEvento)) {
                 e.adicionarComodidade(nome, preco, categoria);
+                break;
             }
         }
     }
@@ -63,6 +67,7 @@ public class Catalogo {
         for (Evento evento : eventos) {
             if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
                 evento.setStatus(novoStatus);
+                break;
             }
         }
     }
@@ -71,6 +76,7 @@ public class Catalogo {
         for (Evento evento : eventos) {
             if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
                 eventos.remove(evento);
+                break;
             }
         }
     }
@@ -92,6 +98,7 @@ public class Catalogo {
         for (Evento e : eventos) {
             if (e.getNome().equalsIgnoreCase(nomeEvento)) {
                 e.removerComodidade(nomeComodidade);
+                break;
             }
         }
     }
@@ -108,6 +115,7 @@ public class Catalogo {
         for (Evento evento : eventos) {
             if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
                 evento.setNome(novoNome);
+                break;
             }
         }
     }
@@ -116,6 +124,7 @@ public class Catalogo {
         for (Evento evento : eventos) {
             if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
                 evento.setDescricao(novaDescricao);
+                break;
             }
         }
     }
@@ -124,6 +133,7 @@ public class Catalogo {
         for (Evento evento : eventos) {
             if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
                 evento.setQuantidadeConvidados(novaQuantidadeConvidados);
+                break;
             }
         }
     }
@@ -132,6 +142,7 @@ public class Catalogo {
         for (Evento evento : eventos) {
             if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
                 evento.setLocalizacao(novaLocalizacao);
+                break;
             }
         }
     }
@@ -140,6 +151,7 @@ public class Catalogo {
         for (Evento evento : eventos) {
             if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
                 evento.setPrecoAcomodacao(novoPrecoAcomodacao);
+                break;
             }
         }
     }

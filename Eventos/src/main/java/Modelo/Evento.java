@@ -151,6 +151,7 @@ public class Evento {
         for (Comodidade comodidade : comodidades) {
             if (comodidade.getNome().equalsIgnoreCase(nomeComodidade)) {
                 comodidades.remove(comodidade);
+                break;
             }
         }
     }
