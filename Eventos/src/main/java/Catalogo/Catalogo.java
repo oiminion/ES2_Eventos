@@ -18,6 +18,10 @@ public class Catalogo {
 
     private ArrayList<Evento> eventos;
 
+    public Catalogo() {
+        this.eventos = new ArrayList<>();
+    }
+    
     public void alterarNomeComodidade(String nomeEvento, String nomeComodidade, String novoNome) {
         for (Evento evento : eventos) {
             if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
