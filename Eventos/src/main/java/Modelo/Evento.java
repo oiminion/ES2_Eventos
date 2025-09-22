@@ -32,6 +32,7 @@ public class Evento {
         this.localizacao = localizacao;
         this.precoAcomodacao = precoAcomodacao;
         this.nomeOrganizador = nomeOrganizador;
+        this.comodidades = new ArrayList<>();
     }
     
     public void alterarNomeComodidade(String nomeComodidade, String novoNome) {
