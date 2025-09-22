@@ -47,7 +47,7 @@ public class Catalogo {
     }
 
     public void adicionarEvento(Evento evento) {
-
+        eventos.add(evento);
     }
     
     public void adicionarComodidade(String nomeEvento, String nome, double preco, Categoria categoria)
