@@ -84,10 +84,6 @@ public class Controlador {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
-    public void exibirRelatorio() {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
-
     public String exibirRelatorioEventos() {
         return catalogo.exibirRelatorioEventos();
     }
