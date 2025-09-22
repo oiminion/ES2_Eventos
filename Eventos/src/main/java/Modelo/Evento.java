@@ -179,4 +179,37 @@ public class Evento {
         comodidades.add(comodidade);
     }
     
+    public double calcularCustoFixo(){
+        double total = 0;
+        for (Comodidade comodidade : comodidades) {
+            total += comodidade.calcularCustoFixo();
+        }
+        return total;
+    }
+    
+    public double calcularCustoVariavel(){
+        double total = 0;
+        for (Comodidade comodidade : comodidades) {
+            total += comodidade.calcularCustoVariavel(quantidadeConvidados);
+        }
+        return total;
+    }
+    
+    public double calcularCustoTotal(){
+        double total = 0;
+        for (Comodidade comodidade : comodidades) {
+            total += comodidade.calcularCustoFixo();
+            total += comodidade.calcularCustoVariavel(quantidadeConvidados);
+        }
+        return total;
+    }
+    
+    public double calcularCustoPorPessoa(){
+        double total = 0;
+        for (Comodidade comodidade : comodidades) {
+            total += comodidade.calcularCustoFixo();
+            total += comodidade.calcularCustoVariavel(quantidadeConvidados);
+        }
+        return total/quantidadeConvidados;
+    }
 }

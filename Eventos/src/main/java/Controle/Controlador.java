@@ -43,36 +43,36 @@ public class Controlador {
         catalogo.removerEvento(nomeEvento);
     }
 
-    public void alterarNomeEvento(Evento evento, String novoNome) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void alterarNomeEvento(String nomeEvento, String novoNome) {
+        catalogo.alterarNomeEvento(nomeEvento, novoNome); 
     }
 
-    public void alterarDescricaoEvento(Evento evento, String novaDescricao) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void alterarDescricaoEvento(String nomeEvento, String novaDescricao) {
+        catalogo.alterarDescricaoEvento(nomeEvento, novaDescricao); 
     }
 
-    public void alterarQuantidadeConvidadosEvento(Evento evento, int novaQuantidadeConvidados) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void alterarQuantidadeConvidadosEvento(String nomeEvento, int novaQuantidadeConvidados) {
+        catalogo.alterarQuantidadeConvidadosEvento(nomeEvento, novaQuantidadeConvidados); 
     }
 
-    public void alterarLocalizacaoEvento(Evento evento, Localizacao novaLocalizacao) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void alterarLocalizacaoEvento(String nomeEvento, Localizacao novaLocalizacao) {
+        catalogo.alterarLocalizacaoEvento(nomeEvento, novaLocalizacao);
     }
 
-    public void alterarPrecoAcomodacaoEvento(Evento evento, double novoPrecoAcomodacao) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void alterarPrecoAcomodacaoEvento(String nomeEvento, double novoPrecoAcomodacao) {
+        catalogo.alterarPrecoAcomodacaoEvento(nomeEvento, novoPrecoAcomodacao);
     }
 
     public void alterarStatusEvento(String nomeEvento, Status novoStatus) {
         catalogo.alterarStatusEvento(nomeEvento, novoStatus);
     }
 
-    public double calcularCustoPorPessoaEvento(Evento evento) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public double calcularCustoPorPessoaEvento(String nomeEvento) {
+        return catalogo.calcularCustoPorPessoa(nomeEvento);
     }
 
-    public double calcularCustoTotal(Evento evento) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public double calcularCustoTotal(String nomeEvento) {
+        return catalogo.calcularCustoTotal(nomeEvento);
     }
 
     public String buscarEvento(String busca) {
@@ -80,7 +80,7 @@ public class Controlador {
         return evento.exibirRelatorio();
     }
 
-    public void exibirEvento(Evento evento) {
+    public Evento exibirEvento(String nomeEvento) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
@@ -96,8 +96,8 @@ public class Controlador {
         catalogo.adicionarComodidade(nomeEvento, nome, preco, categoria);
     }
 
-    public void removerComodidade(Evento evento, Comodidade comodidade) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void removerComodidade(String nomeEvento, Comodidade comodidade) {
+        catalogo.removerComodidade(nomeEvento, nomeEvento);
     }
 
     public void alterarNomeComodidade(String nomeEvento, String nomeComodidade, String novoNome) {
@@ -112,12 +112,12 @@ public class Controlador {
         catalogo.alterarCategoriaComodidade(nomeEvento, nomeComodidade, novaCategoria);
     }
 
-    public double calcularCustoFixo(Evento evento, Comodidade comodidade) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public double calcularCustoFixo(String nomeEvento) {
+        return catalogo.calcularCustoFixo(nomeEvento);
     }
 
-    public double calcularCustoVariavel(Evento evento, Comodidade comodidade) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public double calcularCustoVariavel(String nomeEvento) {
+        return catalogo.calcularCustoVariavel(nomeEvento);
     }
     
 }

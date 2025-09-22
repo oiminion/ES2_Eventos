@@ -43,5 +43,19 @@ public class Comodidade {
         this.categoria = categoria;
     }
     
+    public double calcularCustoFixo(){
+        if(categoria == Categoria.CUSTO_FIXO)
+        {
+            return this.preco;
+        }
+        return 0;
+    }
     
+    public double calcularCustoVariavel(int quantidade){
+        if(categoria == Categoria.CUSTO_VARIAVEL)
+        {
+            return this.preco * quantidade;
+        }
+        return 0;
+    }
 }

@@ -6,6 +6,7 @@ package Catalogo;
 
 import Modelo.Categoria;
 import Modelo.Evento;
+import Modelo.Localizacao;
 import Modelo.Status;
 import java.util.ArrayList;
 
@@ -85,7 +86,7 @@ public class Catalogo {
 
     public void removerComodidade(String nomeEvento, String nomeComodidade) {
         for (Evento e : eventos) {
-            if (e.getNome().equals(nomeEvento)) {
+            if (e.getNome().equalsIgnoreCase(nomeEvento)) {
                 e.removerComodidade(nomeComodidade);
             }
         }
@@ -97,5 +98,81 @@ public class Catalogo {
             relatorio += e.exibirRelatorio();
         }
         return relatorio;
+    }
+    
+    public void alterarNomeEvento(String nomeEvento, String novoNome){
+        for (Evento evento : eventos) {
+            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
+                evento.setNome(novoNome);
+            }
+        }
+    }
+    
+    public void alterarDescricaoEvento(String nomeEvento, String novaDescricao){
+        for (Evento evento : eventos) {
+            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
+                evento.setDescricao(novaDescricao);
+            }
+        }
+    }
+    
+    public void alterarQuantidadeConvidadosEvento(String nomeEvento, int novaQuantidadeConvidados){
+        for (Evento evento : eventos) {
+            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
+                evento.setQuantidadeConvidados(novaQuantidadeConvidados);
+            }
+        }
+    }
+    
+    public void alterarLocalizacaoEvento(String nomeEvento, Localizacao novaLocalizacao){
+        for (Evento evento : eventos) {
+            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
+                evento.setLocalizacao(novaLocalizacao);
+            }
+        }
+    }
+    
+    public void alterarPrecoAcomodacaoEvento(String nomeEvento, double novoPrecoAcomodacao){
+        for (Evento evento : eventos) {
+            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
+                evento.setPrecoAcomodacao(novoPrecoAcomodacao);
+            }
+        }
+    }
+    
+    public double calcularCustoFixo(String nomeEvento){
+        for (Evento evento : eventos) {
+            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
+                return evento.calcularCustoFixo();
+            }
+        }
+        return 0;
+    }
+    
+    public double calcularCustoVariavel(String nomeEvento){
+        for (Evento evento : eventos) {
+            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
+                return evento.calcularCustoVariavel();
+            }
+        }
+        return 0;
+    }
+    
+    public double calcularCustoTotal(String nomeEvento){
+        for (Evento evento : eventos) {
+            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
+                return evento.calcularCustoTotal();
+            }
+        }
+        return 0;
+    }
+    
+    public double calcularCustoPorPessoa(String nomeEvento){
+        for (Evento evento : eventos) {
+            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
+                return evento.calcularCustoPorPessoa();
+            }
+        }
+        return 0;
     }
 }
