@@ -24,8 +24,6 @@ public class Evento {
     private Status status;
     private String nomeOrganizador;
     private ArrayList<Comodidade> comodidades;
-    private double custoPorPessoa;
-    private double custoTotal;
 
     public Evento(String nome, String descricao, int quantidadeConvidados, Localizacao localizacao, double precoAcomodacao, String nomeOrganizador) {
         this.nome = nome;
@@ -61,11 +59,11 @@ public class Evento {
     }
     
     public String exibirRelatorio() {
-        return "Nome: " + this.nome
-                + "Descricao: " + this.descricao
-                + "Convidados: " + this.quantidadeConvidados
-                + "Status: " + this.status
-                + "Custo Total: " + this.custoTotal;
+        return "Nome: " + this.nome + "\n"
+                + "Descricao: " + this.descricao + "\n"
+                + "Convidados: " + this.quantidadeConvidados + "\n"
+                + "Status: " + this.status + "\n"
+                + "Custo Total: " + String.valueOf(calcularCustoTotal()) + "\n"; 
     }
     
     public String getNome() {
@@ -146,22 +144,6 @@ public class Evento {
 
     public void setComodidades(ArrayList<Comodidade> comodidades) {
         this.comodidades = comodidades;
-    }
-
-    public double getCustoPorPessoa() {
-        return custoPorPessoa;
-    }
-
-    public void setCustoPorPessoa(double custoPorPessoa) {
-        this.custoPorPessoa = custoPorPessoa;
-    }
-
-    public double getCustoTotal() {
-        return custoTotal;
-    }
-
-    public void setCustoTotal(double custoTotal) {
-        this.custoTotal = custoTotal;
     }
     
     public void removerComodidade(String nomeComodidade) {

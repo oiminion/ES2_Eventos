@@ -95,7 +95,7 @@ public class Catalogo {
     public String exibirRelatorioEventos(){
         String relatorio = "";
         for (Evento e : eventos) {
-            relatorio += e.exibirRelatorio();
+            relatorio += e.exibirRelatorio() + "\n";
         }
         return relatorio;
     }
