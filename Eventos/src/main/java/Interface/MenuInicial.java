@@ -170,7 +170,12 @@ public class MenuInicial extends javax.swing.JFrame {
         buscarEvento.setBackground(new java.awt.Color(255, 204, 204));
         buscarEvento.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         buscarEvento.setForeground(new java.awt.Color(204, 0, 51));
-        buscarEvento.setText("X Buscar Evento");
+        buscarEvento.setText("Buscar Evento");
+        buscarEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarEventoActionPerformed(evt);
+            }
+        });
 
         exibirNotificacoes.setBackground(new java.awt.Color(255, 204, 204));
         exibirNotificacoes.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -363,11 +368,9 @@ public class MenuInicial extends javax.swing.JFrame {
             String nomeEvento = nomeField.getText();
             if (agendado.isSelected()) {
                 controlador.alterarStatusEvento(nomeEvento, Status.AGENDADO);
-            }
-            else if (andamento.isSelected()) {
+            } else if (andamento.isSelected()) {
                 controlador.alterarStatusEvento(nomeEvento, Status.EM_ANDAMENTO);
-            }
-            else if (finalizado.isSelected()) {
+            } else if (finalizado.isSelected()) {
                 controlador.alterarStatusEvento(nomeEvento, Status.FINALIZADO);
             }
         }
@@ -394,7 +397,7 @@ public class MenuInicial extends javax.swing.JFrame {
         panel.add(new JLabel("Custo da Comodidade:"));
         panel.add(fixo);
         panel.add(variavel);
-        
+
         Component frame = null;
         int result = JOptionPane.showConfirmDialog(
                 frame, panel,
@@ -409,17 +412,38 @@ public class MenuInicial extends javax.swing.JFrame {
             double preco = Double.parseDouble(precoField.getText());
             if (fixo.isSelected()) {
                 controlador.adicionarComodidade(nomeEvento, nomeEvento, preco, Categoria.CUSTO_FIXO);
-            }
-            else if (variavel.isSelected()) {
+            } else if (variavel.isSelected()) {
                 controlador.adicionarComodidade(nomeEvento, nomeEvento, preco, Categoria.CUSTO_VARIAVEL);
             }
-            
+
         }
     }//GEN-LAST:event_adiconarComodidadeActionPerformed
 
     private void exibirNotificacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exibirNotificacoesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_exibirNotificacoesActionPerformed
+
+    private void buscarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarEventoActionPerformed
+        // TODO add your handling code here:
+        JTextField nomeField = new JTextField(15);
+        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
+        panel.add(new JLabel("Nome do Evento:"));
+        panel.add(nomeField);
+        Component frame = null;
+        int result = JOptionPane.showConfirmDialog(
+                frame, panel,
+                "Buscar Evento",
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.PLAIN_MESSAGE
+        );
+
+        if (result == JOptionPane.OK_OPTION) {
+            String nomeEvento = nomeField.getText();
+            String texto = controlador.buscarEvento(nomeEvento);
+            
+            JOptionPane.showMessageDialog(null, texto);
+        }
+    }//GEN-LAST:event_buscarEventoActionPerformed
 
     /**
      * @param args the command line arguments
