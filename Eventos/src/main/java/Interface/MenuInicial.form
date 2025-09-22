@@ -187,7 +187,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="0" red="cc" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Criar Organizador"/>
+        <Property name="text" type="java.lang.String" value="X Criar Organizador"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="criarOrganizadorActionPerformed"/>
@@ -240,6 +240,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Alterar Dados do Evento"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="alterarDadosEventoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="exibirEvento">
       <Properties>
@@ -252,8 +255,11 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="0" red="cc" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Exibir Evento"/>
+        <Property name="text" type="java.lang.String" value="X Exibir Evento"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exibirEventoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="exibirRelatorioEventos">
       <Properties>
@@ -283,7 +289,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="0" red="cc" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Buscar Evento"/>
+        <Property name="text" type="java.lang.String" value="X Buscar Evento"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="exibirNotificacoes">
@@ -297,8 +303,11 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="0" red="cc" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Exibir Notifica&#xe7;&#xf5;es"/>
+        <Property name="text" type="java.lang.String" value="X Exibir Notifica&#xe7;&#xf5;es"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exibirNotificacoesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="adiconarComodidade">
       <Properties>
@@ -313,6 +322,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Adicionar Comodidade"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adiconarComodidadeActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
