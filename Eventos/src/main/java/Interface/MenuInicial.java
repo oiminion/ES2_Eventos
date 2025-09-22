@@ -129,6 +129,11 @@ public class MenuInicial extends javax.swing.JFrame {
         cancelarEvento.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         cancelarEvento.setForeground(new java.awt.Color(204, 0, 51));
         cancelarEvento.setText("Cancelar Evento");
+        cancelarEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarEventoActionPerformed(evt);
+            }
+        });
 
         alterarDadosEvento.setBackground(new java.awt.Color(255, 204, 204));
         alterarDadosEvento.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -282,12 +287,33 @@ public class MenuInicial extends javax.swing.JFrame {
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         JFrame frame = new JFrame("Exibição de Texto Grande");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.add(scroll);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }//GEN-LAST:event_exibirRelatorioEventosActionPerformed
+
+    private void cancelarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarEventoActionPerformed
+        // TODO add your handling code here:
+        JTextField nomeField = new JTextField(15);
+        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
+        panel.add(new JLabel("Nome do Evento:"));
+        panel.add(nomeField);
+        Component frame = null;
+        
+        int result = JOptionPane.showConfirmDialog(
+                frame, panel,
+                "Evento a ser Cancelado",
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.PLAIN_MESSAGE
+        );
+        
+        if (result == JOptionPane.OK_OPTION) {
+            String nomeEvento = nomeField.getText();
+            controlador.cancelarEvento(nomeEvento);
+        }
+    }//GEN-LAST:event_cancelarEventoActionPerformed
 
     /**
      * @param args the command line arguments
