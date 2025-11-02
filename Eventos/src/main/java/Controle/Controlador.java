@@ -29,7 +29,7 @@ public class Controlador {
     public String criarOrganizador(String nome) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
-
+    
     public void adicionarEvento(String nome, String descricao, int quantidadeConvidados, Localizacao localizacao, double precoAcomodacao, String nomeOrganizador) {
         FactoryEvento fEvento = new FactoryEvento();
         Evento novoEvento = fEvento.criarEvento(nome, descricao, quantidadeConvidados, localizacao, precoAcomodacao, nomeOrganizador);

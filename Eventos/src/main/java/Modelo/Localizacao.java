@@ -9,12 +9,22 @@ package Modelo;
  * @author Arthur
  */
 public class Localizacao {
+    private String nome;
     private double latitude;
     private double longitude;
+    private double custoAluguelPorDia;
+    private double custoAluguelTotal;
 
-    public Localizacao(double latitude, double longitude) {
+    public Localizacao(String nome, double latitude, double longitude, double custoAluguelPorDia) {
+        this.nome = nome;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.custoAluguelPorDia = custoAluguelPorDia;
+    }
+    
+    public void calcularCustoAluguelTotal(double custoAluguelPorDia, int duracaoEmDias)
+    {
+        this.custoAluguelTotal = custoAluguelPorDia * duracaoEmDias;
     }
     
 }

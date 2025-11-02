@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
  */
 package Modelo;
 
@@ -8,6 +8,6 @@ package Modelo;
  *
  * @author Arthur
  */
-public class Organizador {
-    private String nome;
+public enum TipoItem {
+    COMIDA, BEBIDA
 }

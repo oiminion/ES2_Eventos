@@ -81,10 +81,6 @@ public class Catalogo {
         }
     }
 
-    public void cancelarEvento(Evento evento) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     public Evento buscarEvento(String busca) {
         for (Evento evento : eventos) {
             if (evento.getNome().equalsIgnoreCase(busca)) {
