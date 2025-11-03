@@ -4,10 +4,16 @@
  */
 package Factory;
 
+import Modelo.Comida;
+import Modelo.TipoItem;
+
 /**
  *
  * @author Arthur
  */
 public class FactoryComida {
-    
+    public Comida criarComida(String nome, double custo, TipoItem tipoitem)
+    {
+        return new Comida(nome, custo, tipoitem);
+    }
 }

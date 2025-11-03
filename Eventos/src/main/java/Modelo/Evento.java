@@ -36,6 +36,14 @@ public class Evento {
         this.dataHoraInicio = dataHoraInicio;
         this.dataHoraFim = dataHoraFim;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public int getQuantidadeConvidados() {
+        return quantidadeConvidados;
+    }
     
     
     

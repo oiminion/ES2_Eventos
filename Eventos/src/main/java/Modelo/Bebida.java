@@ -8,6 +8,10 @@ package Modelo;
  *
  * @author Arthur
  */
-public class Bebida {
+public class Bebida extends ItemBuffet{
+
+    public Bebida(String nome, double custo, TipoItem tipoitem) {
+        super(nome, custo, tipoitem);
+    }
     
 }

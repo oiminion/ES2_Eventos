@@ -4,10 +4,7 @@
  */
 package Catalogo;
 
-import Modelo.Categoria;
 import Modelo.Evento;
-import Modelo.Localizacao;
-import Modelo.Status;
 import java.util.ArrayList;
 
 /**
@@ -22,169 +19,35 @@ public class Catalogo {
         this.eventos = new ArrayList<>();
     }
     
-    public void alterarNomeComodidade(String nomeEvento, String nomeComodidade, String novoNome) {
-        for (Evento evento : eventos) {
-            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
-                evento.alterarNomeComodidade(nomeComodidade, novoNome);
-                break;
-            }
-        }
-    }
-
-    public void alterarPrecoComodidade(String nomeEvento, String nomeComodidade, double novoPreco) {
-        for (Evento evento : eventos) {
-            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
-                evento.alterarPrecoComodidade(nomeComodidade, novoPreco);
-                break;
-            }
-        }
-    }
-
-    public void alterarCategoriaComodidade(String nomeEvento, String nomeComodidade, Categoria novaCategoria) {
-        for (Evento evento : eventos) {
-            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
-                evento.alterarCategoriaComodidade(nomeComodidade, novaCategoria);
-                break;
-            }
-        }
-    }
-
-    public void adicionarEvento(Evento evento) {
-        eventos.add(evento);
-    }
-    
-    public void adicionarComodidade(String nomeEvento, String nome, double preco, Categoria categoria)
+    public void adicionarEvento(Evento evento)
     {
-        for (Evento e : eventos) {
-            if (e.getNome().equals(nomeEvento)) {
-                e.adicionarComodidade(nome, preco, categoria);
-                break;
-            }
-        }
+        this.eventos.add(evento);
     }
     
-    public void alterarStatusEvento(String nomeEvento, Status novoStatus) {
-        for (Evento evento : eventos) {
-            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
-                evento.setStatus(novoStatus);
-                break;
-            }
-        }
-    }
-
-    public void removerEvento(String nomeEvento) {
-        for (Evento evento : eventos) {
-            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
-                eventos.remove(evento);
-                break;
-            }
-        }
-    }
-
-    public Evento buscarEvento(String busca) {
-        for (Evento evento : eventos) {
-            if (evento.getNome().equalsIgnoreCase(busca)) {
-                return evento;
+    public Evento buscarEvento(String nomeEvento)
+    {
+        for(Evento i: eventos)
+        {
+            if(i.getNome().equals(nomeEvento))
+            {
+                return i;
             }
         }
         return null;
     }
-
-    public void removerComodidade(String nomeEvento, String nomeComodidade) {
-        for (Evento e : eventos) {
-            if (e.getNome().equalsIgnoreCase(nomeEvento)) {
-                e.removerComodidade(nomeComodidade);
-                break;
-            }
+    
+    public String exibirelatorioEventos()
+    {
+        String resultado = "";
+        for(Evento i: eventos)
+        {
+            resultado += i.exibirEvento();
         }
+        return resultado;
     }
     
-    public String exibirRelatorioEventos(){
-        String relatorio = "";
-        for (Evento e : eventos) {
-            relatorio += e.exibirRelatorio() + "\n";
-        }
-        return relatorio;
-    }
-    
-    public void alterarNomeEvento(String nomeEvento, String novoNome){
-        for (Evento evento : eventos) {
-            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
-                evento.setNome(novoNome);
-                break;
-            }
-        }
-    }
-    
-    public void alterarDescricaoEvento(String nomeEvento, String novaDescricao){
-        for (Evento evento : eventos) {
-            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
-                evento.setDescricao(novaDescricao);
-                break;
-            }
-        }
-    }
-    
-    public void alterarQuantidadeConvidadosEvento(String nomeEvento, int novaQuantidadeConvidados){
-        for (Evento evento : eventos) {
-            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
-                evento.setQuantidadeConvidados(novaQuantidadeConvidados);
-                break;
-            }
-        }
-    }
-    
-    public void alterarLocalizacaoEvento(String nomeEvento, Localizacao novaLocalizacao){
-        for (Evento evento : eventos) {
-            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
-                evento.setLocalizacao(novaLocalizacao);
-                break;
-            }
-        }
-    }
-    
-    public void alterarPrecoAcomodacaoEvento(String nomeEvento, double novoPrecoAcomodacao){
-        for (Evento evento : eventos) {
-            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
-                evento.setPrecoAcomodacao(novoPrecoAcomodacao);
-                break;
-            }
-        }
-    }
-    
-    public double calcularCustoFixo(String nomeEvento){
-        for (Evento evento : eventos) {
-            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
-                return evento.calcularCustoFixo();
-            }
-        }
-        return 0;
-    }
-    
-    public double calcularCustoVariavel(String nomeEvento){
-        for (Evento evento : eventos) {
-            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
-                return evento.calcularCustoVariavel();
-            }
-        }
-        return 0;
-    }
-    
-    public double calcularCustoTotal(String nomeEvento){
-        for (Evento evento : eventos) {
-            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
-                return evento.calcularCustoTotal();
-            }
-        }
-        return 0;
-    }
-    
-    public double calcularCustoPorPessoa(String nomeEvento){
-        for (Evento evento : eventos) {
-            if (evento.getNome().equalsIgnoreCase(nomeEvento)) {
-                return evento.calcularCustoPorPessoa();
-            }
-        }
-        return 0;
+    public void removerEvento(Evento evento)
+    {
+        this.eventos.remove(evento);
     }
 }
