@@ -10,34 +10,34 @@ package Modelo;
  */
 public class DespesaAdicional extends Despesa{
     private String descricao;
-    private double custoPorConvidado;
+    private double custo;
 
-    public DespesaAdicional(String nome, CategoriaCusto categoriaCusto, String descricao, double custoPorConvidado) {
+    public DespesaAdicional(String nome, CategoriaCusto categoriaCusto, String descricao, double custo) {
         super(nome, categoriaCusto);
         this.descricao = descricao;
-        this.custoPorConvidado = custoPorConvidado;
+        this.custo = custo;
     }
 
-    public double getCustoPorConvidado() {
-        return custoPorConvidado;
+    public double getCusto() {
+        return this.custo;
     }
     
     
     
-    public void calcularCustoTotalDespesaFixa(double custoPorConvidado)
+    public void calcularCustoTotalDespesaFixa(double custo)
     {
-        this.custoPorConvidado += custoPorConvidado;
+        this.custo += custo;
     }
     
     public void calcularCustoTotalDespesaVariavel(double custoPorConvidado, int quantidadeConvidados)
     {
-        this.custoPorConvidado += custoPorConvidado * quantidadeConvidados;
+        this.custo += custoPorConvidado * quantidadeConvidados;
     }
     
-    public void alterarDespesaAdicional(String novoNome, String novaCategoriaCusto, String novaDescricao, double novoCustoPorConvidado)
+    public void alterarDespesaAdicional(String novoNome, String novaCategoriaCusto, String novaDescricao, double novoCusto)
     {
         super.alterarDespesa(novoNome, novaCategoriaCusto);
         this.descricao = novaDescricao;
-        this.custoPorConvidado = novoCustoPorConvidado;
+        this.custo = novoCusto;
     }
 }

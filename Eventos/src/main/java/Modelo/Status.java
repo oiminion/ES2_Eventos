@@ -9,5 +9,5 @@ package Modelo;
  * @author Arthur
  */
 public enum Status {
-    
+    AGENDAMENTO, EM_ANDAMENTO, ENCERRADO        
 }

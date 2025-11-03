@@ -4,8 +4,9 @@
  */
 package Modelo;
 
-import Factory.FactoryComodidade;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 /**
@@ -18,182 +19,167 @@ public class Evento {
     private String descricao;
     private int quantidadeConvidados;
     private Localizacao localizacao;
-    private double precoAcomodacao;
     private LocalDateTime dataHoraInicio;
     private LocalDateTime dataHoraFim;
+    private int duracaoEmDias;
     private Status status;
-    private String nomeOrganizador;
-    private ArrayList<Comodidade> comodidades;
+    private Buffet buffet;
+    private ArrayList<Funcionario> funcionarios;
+    private ArrayList<DespesaAdicional> despesasAdicionais;
+    private double custoTotal;
+    private double custoPorConvidado;
 
-    public Evento(String nome, String descricao, int quantidadeConvidados, Localizacao localizacao, double precoAcomodacao, String nomeOrganizador) {
+    public Evento(String nome, String descricao, int quantidadeConvidados, LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim) {
         this.nome = nome;
         this.descricao = descricao;
         this.quantidadeConvidados = quantidadeConvidados;
-        this.localizacao = localizacao;
-        this.precoAcomodacao = precoAcomodacao;
-        this.nomeOrganizador = nomeOrganizador;
-        this.comodidades = new ArrayList<>();
-    }
-    
-    public void alterarNomeComodidade(String nomeComodidade, String novoNome) {
-        for (Comodidade comodidade : comodidades) {
-            if (comodidade.getNome().equalsIgnoreCase(nomeComodidade)) {
-                comodidade.setNome(novoNome);
-            }
-        }
-    }
-
-    public void alterarPrecoComodidade(String nomeComodidade, double novoPreco) {
-        for (Comodidade comodidade : comodidades) {
-            if (comodidade.getNome().equalsIgnoreCase(nomeComodidade)) {
-                comodidade.setPreco(novoPreco);
-            }
-        }
-    }
-
-    public void alterarCategoriaComodidade(String nomeComodidade, Categoria novaCategoria) {
-        for (Comodidade comodidade : comodidades) {
-            if (comodidade.getNome().equalsIgnoreCase(nomeComodidade)) {
-                comodidade.setCategoria(novaCategoria);
-            }
-        }
-    }
-    
-    public String exibirRelatorio() {
-        return "Nome: " + this.nome + "\n"
-                + "Descricao: " + this.descricao + "\n"
-                + "Convidados: " + this.quantidadeConvidados + "\n"
-                + "Status: " + this.status + "\n"
-                + "Custo Total: " + String.valueOf(calcularCustoTotal()) + "\n"; 
-    }
-    
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public int getQuantidadeConvidados() {
-        return quantidadeConvidados;
-    }
-
-    public void setQuantidadeConvidados(int quantidadeConvidados) {
-        this.quantidadeConvidados = quantidadeConvidados;
-    }
-
-    public Localizacao getLocalizacao() {
-        return localizacao;
-    }
-
-    public void setLocalizacao(Localizacao localizacao) {
-        this.localizacao = localizacao;
-    }
-
-    public double getPrecoAcomodacao() {
-        return precoAcomodacao;
-    }
-
-    public void setPrecoAcomodacao(double precoAcomodacao) {
-        this.precoAcomodacao = precoAcomodacao;
-    }
-
-    public LocalDateTime getDataHoraInicio() {
-        return dataHoraInicio;
-    }
-
-    public void setDataHoraInicio(LocalDateTime dataHoraInicio) {
         this.dataHoraInicio = dataHoraInicio;
-    }
-
-    public LocalDateTime getDataHoraFim() {
-        return dataHoraFim;
-    }
-
-    public void setDataHoraFim(LocalDateTime dataHoraFim) {
         this.dataHoraFim = dataHoraFim;
     }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public String getNomeOrganizador() {
-        return nomeOrganizador;
-    }
-
-    public void setNomeOrganizador(String nomeOrganizador) {
-        this.nomeOrganizador = nomeOrganizador;
-    }
-
-    public ArrayList<Comodidade> getComodidades() {
-        return comodidades;
-    }
-
-    public void setComodidades(ArrayList<Comodidade> comodidades) {
-        this.comodidades = comodidades;
+    
+    
+    
+    public void calcularDuracaoEmDias()
+    {
+        this.duracaoEmDias = (int)ChronoUnit.DAYS.between(this.dataHoraInicio, this.dataHoraFim);
     }
     
-    public void removerComodidade(String nomeComodidade) {
-        for (Comodidade comodidade : comodidades) {
-            if (comodidade.getNome().equalsIgnoreCase(nomeComodidade)) {
-                comodidades.remove(comodidade);
-                break;
+    public double calcularCustoTotalBuffet()
+    {
+        this.buffet.calcularCustoTotal();
+        return this.buffet.getCustoTotal();
+        
+    }
+    
+    public void calcularCustoTotalEvento()
+    {
+        calcularDuracaoEmDias();
+        
+        double aux = 0;
+        
+        for(Funcionario i: funcionarios)
+        {
+            i.calcularPagamentoTotal(this.duracaoEmDias);
+            aux += i.getPagamentoTotal();
+        }
+        
+        for(DespesaAdicional i: despesasAdicionais)
+        {
+            i.calcularCustoTotalDespesaFixa(this.custoPorConvidado);
+            i.calcularCustoTotalDespesaVariavel(this.custoPorConvidado, this.quantidadeConvidados);
+            aux += i.getCusto();
+        }
+        
+        aux += calcularCustoTotalBuffet();
+        
+        this.custoTotal = aux;
+    }
+    
+    public void calcularCustoPorConvidado()
+    {
+        this.custoPorConvidado = this.custoTotal / this.quantidadeConvidados;
+    }
+    
+    public void setLocalizacao(Localizacao localizacao)
+    {
+        this.localizacao = localizacao;
+    }
+    
+    public void adicionarFuncionario(Funcionario funcionario)
+    {
+        this.funcionarios.add(funcionario);
+    }
+    
+    public void adicionarDespesaAdicional(DespesaAdicional despesaAdicional)
+    {
+        this.despesasAdicionais.add(despesaAdicional);
+    }
+    
+    public void adicionarItemBuffet(ItemBuffet itemBuffet)
+    {
+        this.buffet.adicioinarItemBuffet(itemBuffet);
+    }
+    
+    public DespesaAdicional buscarDespesaAdicional(String nomeDespesaAdicional)
+    {
+        for(DespesaAdicional i : despesasAdicionais)
+        {
+            if(i.getNome().equals(nomeDespesaAdicional))
+            {
+                return i;
             }
         }
+        return null;
     }
     
-    public void adicionarComodidade(String nome, double preco, Categoria categoria)
+    public Funcionario buscarFuncionario(String nomeFuncionario)
     {
-        FactoryComodidade fComodidade = new FactoryComodidade();
-        Comodidade comodidade = fComodidade.criarComodidade(nome, preco, categoria);
-        comodidades.add(comodidade);
+        for(Funcionario i : funcionarios)
+        {
+            if(i.getNome().equals(nomeFuncionario))
+            {
+                return i;
+            }
+        }
+        return null;
     }
     
-    public double calcularCustoFixo(){
-        double total = 0;
-        for (Comodidade comodidade : comodidades) {
-            total += comodidade.calcularCustoFixo();
-        }
-        return total;
+    public ItemBuffet buscarItemBuffet(String nomeItemBuffet)
+    {
+        return this.buffet.buscarItemBuffet(nomeItemBuffet);
     }
     
-    public double calcularCustoVariavel(){
-        double total = 0;
-        for (Comodidade comodidade : comodidades) {
-            total += comodidade.calcularCustoVariavel(quantidadeConvidados);
-        }
-        return total;
+    public void alterarStatus(Status novoStatus)
+    {
+        this.status = novoStatus;
     }
     
-    public double calcularCustoTotal(){
-        double total = 0;
-        for (Comodidade comodidade : comodidades) {
-            total += comodidade.calcularCustoFixo();
-            total += comodidade.calcularCustoVariavel(quantidadeConvidados);
-        }
-        return total;
+    public void removerDespesaAdicional(DespesaAdicional despesaAdicional)
+    {
+        this.despesasAdicionais.remove(despesaAdicional);
     }
     
-    public double calcularCustoPorPessoa(){
-        double total = 0;
-        for (Comodidade comodidade : comodidades) {
-            total += comodidade.calcularCustoFixo();
-            total += comodidade.calcularCustoVariavel(quantidadeConvidados);
+    public void removerFuncionario(Funcionario funcionario)
+    {
+        this.funcionarios.remove(funcionario);
+    }
+    
+    public void removerItemBuffet(ItemBuffet itemBuffet)
+    {
+        this.buffet.removerItemBuffet(itemBuffet);
+    }
+    
+    public String exibirEvento()
+    {
+        String resultado = "Nome:" +  this.nome + "\n";
+        resultado += "Descrição:" + this.descricao  + "\n";
+        resultado += "Duração em dias:" + String.valueOf(duracaoEmDias) + "\n";
+        resultado += "Quantidade Convidados:" + String.valueOf(quantidadeConvidados) + "\n";
+        resultado += "Longitude:" + String.valueOf(localizacao.getLongitude()) + "\n";
+        resultado += "Latitude:" + String.valueOf(localizacao.getLatitude()) + "\n";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String data = dataHoraInicio.format(formatter);
+        resultado += "Data inicio:" + data + "\n";
+        data = dataHoraFim.format(formatter);
+        resultado += "Data Fim:" + data + "\n";
+        resultado += "Status:" + status.name() + "\n";
+        resultado += "Buffet:\n" + buffet.exibir() + "\n";
+        resultado += "Funcionários:\n";
+        for(Funcionario i: funcionarios)
+        {
+            resultado += i.getNome() + "\n";
+            resultado += String.valueOf(i.getPagamentoTotal()) + "\n";
         }
-        return total/quantidadeConvidados;
+        resultado += "\n";
+        resultado += "Despesas adicionais:\n";
+        for(DespesaAdicional i: despesasAdicionais)
+        {
+            resultado += i.getNome() + "\n";
+            resultado += String.valueOf(i.getCusto()) + "\n";
+        }
+        resultado += "\n";
+        resultado += "Custo total:" + String.valueOf(custoTotal) + "\n";
+        resultado += "Custo por convidado:" + String.valueOf(custoPorConvidado) + "\n";
+        return resultado;
     }
 }

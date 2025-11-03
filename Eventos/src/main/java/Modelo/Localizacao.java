@@ -21,6 +21,16 @@ public class Localizacao {
         this.longitude = longitude;
         this.custoAluguelPorDia = custoAluguelPorDia;
     }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+    
+    
     
     public void calcularCustoAluguelTotal(double custoAluguelPorDia, int duracaoEmDias)
     {

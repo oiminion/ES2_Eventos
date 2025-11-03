@@ -16,6 +16,12 @@ public class Despesa {
         this.nome = nome;
         this.categoriaCusto = categoriaCusto;
     }
+
+    public String getNome() {
+        return nome;
+    }
+    
+    
     
     public void alterarDespesa(String nome, String categoriaCusto)
     {

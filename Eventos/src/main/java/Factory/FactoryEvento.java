@@ -5,14 +5,15 @@
 package Factory;
 
 import Modelo.Evento;
-import Modelo.Localizacao;
+import java.time.LocalDateTime;
 
 /**
  *
  * @author Arthur
  */
 public class FactoryEvento {
-    public Evento criarEvento(String nome, String descricao, int quantidadeConvidados, Localizacao localizacao, double precoAcomodacao, String nomeOrganizador) {
-        return new Evento(nome, descricao, quantidadeConvidados, localizacao, precoAcomodacao, nomeOrganizador);
+    public Evento criarEvento(String nome, String descricao, int quantidadeConvidados, LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim)
+    {
+        return new Evento(nome, descricao, quantidadeConvidados, dataHoraInicio, dataHoraFim);
     }
 }

@@ -4,14 +4,15 @@
  */
 package Factory;
 
-import Modelo.Notificacao;
+import Modelo.Funcionario;
 
 /**
  *
  * @author Arthur
  */
-public class FactoryNotificacao {
-    public Notificacao criarNotificacao(String texto) {
-        return new Notificacao(texto);
+public class FactoryFuncionario {
+    public Funcionario criarFuncionario(String nome, String CPF, String funcao, double diaria)
+    {
+        return new Funcionario(nome, CPF, funcao, diaria);
     }
 }

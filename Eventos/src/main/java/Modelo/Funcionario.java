@@ -8,20 +8,27 @@ package Modelo;
  *
  * @author Arthur
  */
-public class Funcionario {
+public class Funcionario  extends Despesa{
     private String CPF;
     private String funcao;
     private double diaria;
     private double pagamentoTotal;
 
-    public Funcionario(String CPF, String funcao, double diaria) {
+    public Funcionario(String nome, String CPF, String funcao, double diaria) {
+        super(nome, CategoriaCusto.CUSTO_FIXO);
         this.CPF = CPF;
         this.funcao = funcao;
         this.diaria = diaria;
     }
+
+    public double getPagamentoTotal() {
+        return pagamentoTotal;
+    }
     
-    public void calcularPagamentoTotal(double diaria, int duracaoEmDias)
+    
+    
+    public void calcularPagamentoTotal(int duracaoEmDias)
     {
-        this.pagamentoTotal = diaria * duracaoEmDias;
+        this.pagamentoTotal = this.diaria * duracaoEmDias;
     }
 }

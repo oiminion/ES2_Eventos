@@ -18,6 +18,15 @@ public class ItemBuffet {
         this.custo = custo;
         this.tipoitem = tipoitem;
     }
+
+    public String getNome() {
+        return nome;
+    }
     
+    
+    
+    public double getCusto() {
+        return custo;
+    }
     
 }
