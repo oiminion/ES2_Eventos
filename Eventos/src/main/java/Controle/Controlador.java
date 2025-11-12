@@ -3,7 +3,9 @@ package Controle;
 import Catalogo.Catalogo;
 import Factory.FactoryBebida;
 import Factory.FactoryComida;
+import Factory.FactoryDespesaAdicional;
 import Factory.FactoryEvento;
+import Factory.FactoryFuncionario;
 import Factory.FactoryLocalizacao;
 import Interface.Menu;
 import Modelo.CategoriaCusto;
@@ -101,17 +103,18 @@ public class Controlador {
         }
     }
     
-    public void validarInputsDeRegistroDoEvento(String nome, String descricao, int quantidadeConvidados, LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim)
+    public void validarInputsDeRegistroDoEvento(String nome, String descricao, int quantidadeConvidados, String nomeLocalizacao, double latitude, double longitude, double custoAluguelPorDia, LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim)
     {
         FactoryLocalizacao fLoc = new FactoryLocalizacao();
-        Localizacao loc = fLoc.criarLocalizacao(nome, quantidadeConvidados, quantidadeConvidados, quantidadeConvidados);
+        Localizacao loc = fLoc.criarLocalizacao(nomeLocalizacao, latitude, longitude, custoAluguelPorDia);
         FactoryEvento fEve = new FactoryEvento();
         Evento eve = fEve.criarEvento(nome, descricao, quantidadeConvidados, dataHoraInicio, dataHoraFim);
         eve.calcularDuracaoEmDias();
-        loc.calcularCustoAluguelTotal(quantidadeConvidados, quantidadeConvidados);
+        loc.calcularCustoAluguelTotal(custoAluguelPorDia, eve.getDuracaoEmDias());
         eve.setLocalizacao(loc);
         eve.calcularCustoTotalEvento();
         eve.calcularCustoPorConvidado();
+        eve.atualizarStatus();
         catalogo.adicionarEvento(eve);
         menu.exibirMensagemDeConfirmacao();
     }
@@ -119,13 +122,22 @@ public class Controlador {
     public void validarInputsDeRegistroDeDespesaAdicional(String nomeEvento, String nomeDespesa, CategoriaCusto categoriaCusto, String descricao, double custo)
     {
         Evento eve = catalogo.buscarEvento(nomeEvento);
-        DespesaAdicional des = eve.buscarDespesaAdicional(nomeDespesa);
-        des.calcularCustoTotalDespesaFixa(custo);
-        des.calcularCustoTotalDespesaVariavel(custo, eve.getQuantidadeConvidados());
-        eve.adicionarDespesaAdicional(des);
-        eve.calcularCustoTotalEvento();
-        eve.calcularCustoPorConvidado();
-        menu.exibirMensagemDeConfirmacao();
+        if(eve == null)
+        {
+            menu.exibirMensagemDeErro();
+        }
+        else
+        {
+            FactoryDespesaAdicional fDes = new FactoryDespesaAdicional();
+            DespesaAdicional des = fDes.criarDespesaAdicional(nomeDespesa, categoriaCusto, descricao, custo);
+            des.calcularCustoTotalDespesaFixa(custo);
+            des.calcularCustoTotalDespesaVariavel(custo, eve.getQuantidadeConvidados());
+            eve.adicionarDespesaAdicional(des);
+            eve.calcularCustoTotalEvento();
+            eve.calcularCustoPorConvidado();
+            menu.exibirMensagemDeConfirmacao();
+        }
+        
     }
     
     public String exibirelatorioEventos()
@@ -136,49 +148,111 @@ public class Controlador {
     public void cancelarEvento(String nomeEvento)
     {
         Evento eve = catalogo.buscarEvento(nomeEvento);
-        catalogo.removerEvento(eve);
-        menu.exibirMensagemDeConfirmacao();
+        if(eve == null)
+        {
+        	menu.exibirMensagemDeErro();
+        }
+        else
+        {
+            catalogo.removerEvento(eve);
+            menu.exibirMensagemDeConfirmacao();
+        }
     }
     
     public String exibirEvento(String nomeEvento)
     {
         Evento eve = catalogo.buscarEvento(nomeEvento);
-        return eve.exibirEvento();
+        if(eve == null)
+        {
+        	menu.exibirMensagemDeErro();
+                return "";
+        }
+        else
+        {
+            return eve.exibirEvento();
+        }
     }
     
     public void alterarStatus(String nomeEvento, Status novoStatus)
     {
         Evento eve = catalogo.buscarEvento(nomeEvento);
-        eve.alterarStatus(novoStatus);
-        menu.exibirMensagemDeConfirmacao();
+        if(eve == null)
+        {
+        	menu.exibirMensagemDeErro();
+        }
+        else
+        {
+            eve.alterarStatus(novoStatus);
+            menu.exibirMensagemDeConfirmacao();
+        }
     }
     
     public void validarInputsDeAlteracaoDeDespesaAdicional(String nomeEvento, String nomeDespesa, String novoNomeDespesa, CategoriaCusto novaCategoriaCusto, String novaDescricao, double novoCusto)
     {
         Evento eve = catalogo.buscarEvento(nomeEvento);
-        DespesaAdicional des = eve.buscarDespesaAdicional(nomeDespesa);
-        des.alterarDespesaAdicional(novoNomeDespesa, novaCategoriaCusto.name(), novaDescricao, novoCusto);
-        menu.exibirMensagemDeConfirmacao();
+        if(eve == null)
+        {
+        	menu.exibirMensagemDeErro();
+        }
+        else
+        {
+            DespesaAdicional des = eve.buscarDespesaAdicional(nomeDespesa);
+            if(des == null)
+            {
+                menu.exibirMensagemDeErro();
+            }
+            else
+            {
+                des.alterarDespesaAdicional(novoNomeDespesa, novaCategoriaCusto.name(), novaDescricao, novoCusto);
+                menu.exibirMensagemDeConfirmacao();
+            }
+        }
+    }
+    
+    public void validarInputsDeRegistroDeFuncionario(String nomeEvento, String nomeFuncionario, String CPF, String funcao, double diaria)
+    {
+        Evento eve = catalogo.buscarEvento(nomeEvento);
+        if(eve == null)
+        {
+            menu.exibirMensagemDeErro();
+        }
+        else
+        {
+            FactoryFuncionario fFunc = new FactoryFuncionario();
+            Funcionario func = fFunc.criarFuncionario(nomeFuncionario, CPF, funcao, diaria);
+            func.calcularPagamentoTotal(eve.getDuracaoEmDias());
+            eve.adicionarFuncionario(func);
+            eve.calcularCustoTotalEvento();
+            eve.calcularCustoPorConvidado();
+            menu.exibirMensagemDeConfirmacao();
+        }
     }
     
     public void validarInputsDeRegistroDeItemDoBuffet(String nomeEvento, String nomeItemBuffet, TipoItem tipo, double custo)
     {
         Evento eve = catalogo.buscarEvento(nomeEvento);
-        ItemBuffet item = null;
-        if(tipo == TipoItem.COMIDA)
+        if(eve == null)
         {
-            FactoryComida fCom = new FactoryComida();
-            item = fCom.criarComida(nomeItemBuffet, custo, tipo);
+            menu.exibirMensagemDeErro();
         }
-        else if(tipo == TipoItem.BEBIDA)
+        else
         {
-            FactoryBebida fCom = new FactoryBebida();
-            item = fCom.criarBebida(nomeItemBuffet, custo, tipo);
+            ItemBuffet item = null;
+            if(tipo == TipoItem.COMIDA)
+            {
+                FactoryComida fCom = new FactoryComida();
+                item = fCom.criarComida(nomeItemBuffet, custo, tipo);
+            }
+            else if(tipo == TipoItem.BEBIDA)
+            {
+                FactoryBebida fCom = new FactoryBebida();
+                item = fCom.criarBebida(nomeItemBuffet, custo, tipo);
+            }
+            eve.adicionarItemBuffet(item);
+            eve.calcularCustoTotalBuffet();
+            eve.calcularCustoTotalEvento();
+            eve.calcularCustoPorConvidado();
+            menu.exibirMensagemDeConfirmacao();
         }
-        eve.adicionarItemBuffet(item);
-        eve.calcularCustoTotalBuffet();
-        eve.calcularCustoTotalEvento();
-        eve.calcularCustoPorConvidado();
-        menu.exibirMensagemDeConfirmacao();
     }
 }

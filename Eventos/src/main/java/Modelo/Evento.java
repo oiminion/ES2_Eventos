@@ -35,6 +35,8 @@ public class Evento {
         this.quantidadeConvidados = quantidadeConvidados;
         this.dataHoraInicio = dataHoraInicio;
         this.dataHoraFim = dataHoraFim;
+        this.funcionarios = new ArrayList<>();
+        this.despesasAdicionais = new ArrayList<>();
     }
 
     public String getNome() {
@@ -44,8 +46,26 @@ public class Evento {
     public int getQuantidadeConvidados() {
         return quantidadeConvidados;
     }
+
+    public int getDuracaoEmDias() {
+        return duracaoEmDias;
+    }
     
-    
+    public void atualizarStatus()
+    {
+        if(LocalDateTime.now().isBefore(this.dataHoraInicio))
+        {
+            this.status = Status.AGENDAMENTO;
+        }
+        else if(LocalDateTime.now().isAfter(this.dataHoraFim))
+        {
+            this.status = Status.ENCERRADO;
+        }
+        else
+        {
+            this.status = Status.EM_ANDAMENTO;
+        }
+    }
     
     public void calcularDuracaoEmDias()
     {
@@ -54,6 +74,10 @@ public class Evento {
     
     public double calcularCustoTotalBuffet()
     {
+        if( this.buffet == null)
+        {
+            return 0;
+        }
         this.buffet.calcularCustoTotal();
         return this.buffet.getCustoTotal();
         
@@ -171,7 +195,11 @@ public class Evento {
         data = dataHoraFim.format(formatter);
         resultado += "Data Fim:" + data + "\n";
         resultado += "Status:" + status.name() + "\n";
-        resultado += "Buffet:\n" + buffet.exibir() + "\n";
+        resultado += "Buffet:\n";
+        if(buffet != null)
+        {
+            resultado += buffet.exibir() + "\n";
+        }
         resultado += "Funcionários:\n";
         for(Funcionario i: funcionarios)
         {

@@ -48,6 +48,7 @@ public class Menu extends javax.swing.JFrame {
         alterarStatus = new javax.swing.JButton();
         alterarDespesasAdicionais = new javax.swing.JButton();
         inserirItemBuffet = new javax.swing.JButton();
+        inserirFuncionario = new javax.swing.JButton();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -222,6 +223,16 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        inserirFuncionario.setBackground(new java.awt.Color(255, 204, 204));
+        inserirFuncionario.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        inserirFuncionario.setForeground(new java.awt.Color(204, 0, 51));
+        inserirFuncionario.setText("Inserir Funcionário");
+        inserirFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inserirFuncionarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -229,9 +240,6 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(inserirItemBuffet)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(alterarDespesasAdicionais)
@@ -244,7 +252,12 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(registrarDespesaAdicional)
                             .addComponent(buscarEvento)
                             .addComponent(cancelarEvento))
-                        .addGap(196, 515, Short.MAX_VALUE))))
+                        .addGap(196, 515, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(inserirFuncionario)
+                            .addComponent(inserirItemBuffet))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,7 +284,9 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(alterarDespesasAdicionais)
                 .addGap(18, 18, 18)
                 .addComponent(inserirItemBuffet)
-                .addGap(98, 98, 98))
+                .addGap(18, 18, 18)
+                .addComponent(inserirFuncionario)
+                .addGap(58, 58, 58))
         );
 
         pack();
@@ -458,7 +473,7 @@ public class Menu extends javax.swing.JFrame {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime dataHoraInicio = LocalDateTime.parse(inicioField.getText(), formatter);
             LocalDateTime dataHoraFim = LocalDateTime.parse(fimField.getText(), formatter);
-            controlador.validarInputsDeRegistroDoEvento(nomeField.getText(), descricaoField.getText(), Integer.parseInt(quantidadeField.getText()), dataHoraInicio, dataHoraFim);
+            controlador.validarInputsDeRegistroDoEvento(nomeField.getText(), descricaoField.getText(), Integer.parseInt(quantidadeField.getText()), localField.getText(), Float.parseFloat(latitudeField.getText()), Float.parseFloat(longitudeField.getText()), Float.parseFloat(aluguelDiarioField.getText()), dataHoraInicio, dataHoraFim);
         }
     }//GEN-LAST:event_registrarEventoActionPerformed
 
@@ -653,6 +668,27 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_inserirItemBuffetActionPerformed
 
+    private void inserirFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inserirFuncionarioActionPerformed
+        // TODO add your handling code here:
+        JTextField nomeField = new JTextField(15);
+        JTextField eventoField = new JTextField(15);
+        JTextField cpfField = new JTextField(15);
+        JTextField funcaoField = new JTextField(15);
+        JTextField custoField = new JTextField(15);
+        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
+        panel.add(new JLabel("Nome do Eventot:"));
+        panel.add(eventoField);
+        panel.add(new JLabel("Nome do Funcionário:"));
+        panel.add(nomeField);
+        panel.add(new JLabel("CPF:"));
+        panel.add(cpfField);
+        panel.add(new JLabel("Função:"));
+        panel.add(funcaoField);
+        panel.add(new JLabel("Diaria:"));
+        panel.add(custoField);
+        
+    }//GEN-LAST:event_inserirFuncionarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -695,6 +731,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton buscarEvento;
     private javax.swing.JButton cancelarEvento;
     private javax.swing.JButton exibirRelatorioEventos;
+    private javax.swing.JButton inserirFuncionario;
     private javax.swing.JButton inserirItemBuffet;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
