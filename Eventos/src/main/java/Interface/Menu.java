@@ -240,53 +240,57 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(registrarEvento)
+                    .addComponent(registrarDespesaAdicional)
+                    .addComponent(inserirItemBuffet)
+                    .addComponent(alterarStatus)
+                    .addComponent(alterarDespesasAdicionais)
+                    .addComponent(inserirFuncionario))
+                .addGap(58, 58, 58)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(alterarDespesasAdicionais)
-                            .addComponent(removerItemBuffet)
-                            .addComponent(exibirRelatorioEventos)
-                            .addComponent(registrarEvento)
+                            .addComponent(cancelarEvento)
                             .addComponent(removerDespesaAdicional)
-                            .addComponent(removerFuncionario)
-                            .addComponent(alterarStatus)
-                            .addComponent(registrarDespesaAdicional)
-                            .addComponent(buscarEvento)
-                            .addComponent(cancelarEvento))
-                        .addGap(196, 515, Short.MAX_VALUE))
+                            .addComponent(removerItemBuffet)
+                            .addComponent(removerFuncionario))
+                        .addGap(64, 282, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inserirFuncionario)
-                            .addComponent(inserirItemBuffet))
+                            .addComponent(buscarEvento)
+                            .addComponent(exibirRelatorioEventos))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(registrarEvento)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(registrarEvento)
+                    .addComponent(cancelarEvento))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(removerDespesaAdicional)
-                .addGap(18, 18, 18)
-                .addComponent(removerItemBuffet)
-                .addGap(18, 18, 18)
-                .addComponent(removerFuncionario)
-                .addGap(18, 18, 18)
-                .addComponent(exibirRelatorioEventos)
-                .addGap(18, 18, 18)
-                .addComponent(registrarDespesaAdicional)
-                .addGap(18, 18, 18)
-                .addComponent(cancelarEvento)
-                .addGap(18, 18, 18)
-                .addComponent(buscarEvento)
-                .addGap(18, 18, 18)
-                .addComponent(alterarStatus)
-                .addGap(18, 18, 18)
-                .addComponent(alterarDespesasAdicionais)
-                .addGap(18, 18, 18)
-                .addComponent(inserirItemBuffet)
-                .addGap(18, 18, 18)
-                .addComponent(inserirFuncionario)
-                .addGap(58, 58, 58))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(registrarDespesaAdicional)
+                    .addComponent(removerDespesaAdicional))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(removerItemBuffet)
+                    .addComponent(inserirItemBuffet))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inserirFuncionario)
+                    .addComponent(removerFuncionario))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(alterarStatus)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(alterarDespesasAdicionais))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(exibirRelatorioEventos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buscarEvento)))
+                .addGap(322, 322, 322))
         );
 
         pack();
@@ -481,7 +485,16 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         JTextField eventoField = new JTextField(15);
         JTextField nomeField = new JTextField(15);
-        JTextField catField = new JTextField(15);
+        
+        JRadioButton CUSTO_FIXOButton = new JRadioButton("CUSTO_FIXO");
+        CUSTO_FIXOButton.setActionCommand("CUSTO_FIXO");
+        JRadioButton CUSTO_VARIAVELButton = new JRadioButton("CUSTO_VARIAVEL");
+        CUSTO_VARIAVELButton.setActionCommand("CUSTO_VARIAVEL");
+        
+        ButtonGroup group = new ButtonGroup();
+        group.add(CUSTO_FIXOButton);
+        group.add(CUSTO_VARIAVELButton);
+        
         JTextField descricaoField = new JTextField(15);
         JTextField custoPorPessoaField = new JTextField(15);
         JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
@@ -489,8 +502,12 @@ public class Menu extends javax.swing.JFrame {
         panel.add(eventoField);
         panel.add(new JLabel("Nome da Despesa adicional:"));
         panel.add(nomeField);
+        
         panel.add(new JLabel("Categoria CUSTO_FIXO ou CUSTO_VARIAVEL:"));
-        panel.add(catField);
+        panel.add(new JLabel(""));
+        panel.add(CUSTO_FIXOButton);
+        panel.add(CUSTO_VARIAVELButton);
+        
         panel.add(new JLabel("Descrição:"));
         panel.add(descricaoField);
         panel.add(new JLabel("Custo por pessoa:"));
@@ -511,13 +528,17 @@ public class Menu extends javax.swing.JFrame {
             String nomeDespesa = nomeField.getText();
             String descricao = descricaoField.getText();
             
-            if(catField.getText().equals("CUSTO_FIXO"))
+            if(CUSTO_FIXOButton.isSelected())
             {
                 controlador.validarInputsDeRegistroDeDespesaAdicional(nomeEvento, nomeDespesa, CategoriaCusto.CUSTO_FIXO, descricao, Double.parseDouble(custoPorPessoaField.getText()));
             }
-            else if(catField.getText().equals("CUSTO_VARIAVEL"))
+            else if(CUSTO_VARIAVELButton.isSelected())
             {
                 controlador.validarInputsDeRegistroDeDespesaAdicional(nomeEvento, nomeDespesa, CategoriaCusto.CUSTO_VARIAVEL, descricao, Double.parseDouble(custoPorPessoaField.getText()));
+            }
+            else
+            {
+                this.exibirMensagemDeErro();
             }
         }
     }//GEN-LAST:event_registrarDespesaAdicionalActionPerformed
@@ -547,12 +568,20 @@ public class Menu extends javax.swing.JFrame {
     private void alterarStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarStatusActionPerformed
         // TODO add your handling code here:
         JTextField eventoField = new JTextField(15);
-        JTextField statusField = new JTextField(15);
+        JRadioButton AGENDAMENTOButton = new JRadioButton("AGENDAMENTO");
+        AGENDAMENTOButton.setActionCommand("AGENDAMENTO");
+        JRadioButton EM_ANDAMENTOButton = new JRadioButton("EM_ANDAMENTO");
+        EM_ANDAMENTOButton.setActionCommand("EM_ANDAMENTO");
+        JRadioButton ENCERRADOButton = new JRadioButton("ENCERRADO");
+        ENCERRADOButton.setActionCommand("ENCERRADO");
         JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
         panel.add(new JLabel("Nome do Evento:"));
         panel.add(eventoField);
         panel.add(new JLabel("Novo status AGENDAMENTO, EM_ANDAMENTO, ENCERRADO:"));
-        panel.add(statusField);
+        panel.add(new JLabel(""));
+        panel.add(AGENDAMENTOButton);
+        panel.add(EM_ANDAMENTOButton);
+        panel.add(ENCERRADOButton);
         
         Component frame = null;
         
@@ -565,17 +594,21 @@ public class Menu extends javax.swing.JFrame {
 
         if (result == JOptionPane.OK_OPTION) {
             String nomeEvento = eventoField.getText();
-            if(statusField.getText().equals("AGENDAMENTO"))
+            if(AGENDAMENTOButton.isSelected())
             {
                 controlador.alterarStatus(nomeEvento, Status.AGENDAMENTO);
             }
-            else if(statusField.getText().equals("EM_ANDAMENTO"))
+            else if(EM_ANDAMENTOButton.isSelected())
             {
                 controlador.alterarStatus(nomeEvento, Status.EM_ANDAMENTO);
             }
-            else if(statusField.getText().equals("ENCERRADO"))
+            else if(ENCERRADOButton.isSelected())
             {
                 controlador.alterarStatus(nomeEvento, Status.ENCERRADO);
+            }
+            else
+            {
+                this.exibirMensagemDeErro();
             }
         }
         

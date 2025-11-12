@@ -118,25 +118,28 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="registrarEvento" min="-2" max="-2" attributes="0"/>
+                  <Component id="registrarDespesaAdicional" min="-2" max="-2" attributes="0"/>
+                  <Component id="inserirItemBuffet" min="-2" max="-2" attributes="0"/>
+                  <Component id="alterarStatus" min="-2" max="-2" attributes="0"/>
+                  <Component id="alterarDespesasAdicionais" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="inserirFuncionario" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="alterarDespesasAdicionais" min="-2" max="-2" attributes="0"/>
-                          <Component id="removerItemBuffet" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="exibirRelatorioEventos" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="registrarEvento" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="removerDespesaAdicional" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="removerFuncionario" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="alterarStatus" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="registrarDespesaAdicional" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="buscarEvento" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="cancelarEvento" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="removerDespesaAdicional" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="removerItemBuffet" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="removerFuncionario" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="196" pref="515" max="32767" attributes="0"/>
+                      <EmptySpace min="64" pref="282" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="inserirFuncionario" min="-2" max="-2" attributes="0"/>
-                          <Component id="inserirItemBuffet" min="-2" max="-2" attributes="0"/>
+                          <Component id="buscarEvento" min="-2" max="-2" attributes="0"/>
+                          <Component id="exibirRelatorioEventos" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -148,30 +151,39 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="54" max="32767" attributes="0"/>
-              <Component id="registrarEvento" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="registrarEvento" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cancelarEvento" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="removerDespesaAdicional" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="removerItemBuffet" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="removerFuncionario" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="exibirRelatorioEventos" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="registrarDespesaAdicional" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="cancelarEvento" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="buscarEvento" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="alterarStatus" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="alterarDespesasAdicionais" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="inserirItemBuffet" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="inserirFuncionario" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="registrarDespesaAdicional" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="removerDespesaAdicional" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="removerItemBuffet" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="inserirItemBuffet" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="inserirFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="removerFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="alterarStatus" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="alterarDespesasAdicionais" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="exibirRelatorioEventos" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="buscarEvento" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="322" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
