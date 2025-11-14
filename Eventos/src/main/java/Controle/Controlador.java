@@ -204,6 +204,8 @@ public class Controlador {
             else
             {
                 des.alterarDespesaAdicional(novoNomeDespesa, novaCategoriaCusto.name(), novaDescricao, novoCusto);
+                eve.calcularCustoTotalEvento();
+                eve.calcularCustoPorConvidado();
                 menu.exibirMensagemDeConfirmacao();
             }
         }

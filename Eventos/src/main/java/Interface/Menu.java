@@ -719,7 +719,7 @@ public class Menu extends javax.swing.JFrame {
         panel.add(funcaoField);
         panel.add(new JLabel("Diaria:"));
         panel.add(custoField);
-        
+        controlador.adicionarFuncionario(eventoField.getText(), nomeField.getText(), cpfField.getText(), funcaoField.getText(), Double.parseDouble(custoField.getText()));
     }//GEN-LAST:event_inserirFuncionarioActionPerformed
 
     /**
