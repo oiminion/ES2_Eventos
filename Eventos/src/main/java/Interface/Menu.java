@@ -622,19 +622,31 @@ public class Menu extends javax.swing.JFrame {
         JTextField novacatField = new JTextField(15);
         JTextField novadescricaoField = new JTextField(15);
         JTextField novocustoPorPessoaField = new JTextField(15);
-        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
+        JPanel panel = new JPanel(new GridLayout(0, 3, 7, 5));
         panel.add(new JLabel("Nome do Evento:"));
         panel.add(eventoField);
+        panel.add(new JLabel(""));
         panel.add(new JLabel("Nome da Despesa adicional:"));
         panel.add(nomeField);
+        panel.add(new JLabel(""));
         panel.add(new JLabel("Novo Nome da Despesa adicional:"));
         panel.add(novonomeField);
-        panel.add(new JLabel("Nova Categoria CUSTO_FIXO ou CUSTO_VARIAVEL:"));
-        panel.add(novacatField);
+        panel.add(new JLabel(""));
+        
+        panel.add(new JLabel("Categoria Custo:"));
+        JRadioButton CUSTO_FIXOButton = new JRadioButton("CUSTO_FIXO");
+        CUSTO_FIXOButton.setActionCommand("CUSTO_FIXO");
+        panel.add(CUSTO_FIXOButton);
+        JRadioButton CUSTO_VARIAVELButton = new JRadioButton("CUSTO_VARIAVEL");
+        CUSTO_VARIAVELButton.setActionCommand("CUSTO_VARIAVEL");
+        panel.add(CUSTO_VARIAVELButton);
+        
         panel.add(new JLabel("Nova Descrição:"));
         panel.add(novadescricaoField);
+        panel.add(new JLabel(""));
         panel.add(new JLabel("Novo Custo por pessoa:"));
         panel.add(novocustoPorPessoaField);
+        panel.add(new JLabel(""));
         
         
 
@@ -651,13 +663,18 @@ public class Menu extends javax.swing.JFrame {
             String nomeDespesa = nomeField.getText();
             String descricao = novadescricaoField.getText();
             
-            if(novacatField.getText().equals("CUSTO_FIXO"))
+            
+            if(CUSTO_FIXOButton.isSelected())
             {
                 controlador.validarInputsDeAlteracaoDeDespesaAdicional(nomeEvento, nomeDespesa, novonomeField.getText(), CategoriaCusto.CUSTO_FIXO, descricao, Double.parseDouble(novocustoPorPessoaField.getText()));
             }
-            else if(novacatField.getText().equals("CUSTO_VARIAVEL"))
+            else if(CUSTO_VARIAVELButton.isSelected())
             {
                 controlador.validarInputsDeAlteracaoDeDespesaAdicional(nomeEvento, nomeDespesa, novonomeField.getText(), CategoriaCusto.CUSTO_VARIAVEL, descricao, Double.parseDouble(novocustoPorPessoaField.getText()));
+            }
+            else
+            {
+                this.exibirMensagemDeErro();
             }
         }
     }//GEN-LAST:event_alterarDespesasAdicionaisActionPerformed
@@ -668,20 +685,30 @@ public class Menu extends javax.swing.JFrame {
         JTextField eventoField = new JTextField(15);
         JTextField tipoField = new JTextField(15);
         JTextField custoField = new JTextField(15);
-        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
+        JPanel panel = new JPanel(new GridLayout(0, 3, 5, 5));
         panel.add(new JLabel("Nome do Item do buffet:"));
         panel.add(nomeField);
+        panel.add(new JLabel(""));
         panel.add(new JLabel("Nome do Evento:"));
         panel.add(eventoField);
+        panel.add(new JLabel(""));
         panel.add(new JLabel("Tipo BEBIDA ou COMIDA:"));
-        panel.add(tipoField);
+        
+        JRadioButton BEBIDAButton = new JRadioButton("BEBIDA");
+        BEBIDAButton.setActionCommand("BEBIDA");
+        panel.add(BEBIDAButton);
+        JRadioButton COMIDAButton = new JRadioButton("COMIDA");
+        COMIDAButton.setActionCommand("COMIDA");
+        panel.add(COMIDAButton);
+        
         panel.add(new JLabel("Custo:"));
         panel.add(custoField);
+        panel.add(new JLabel(""));
         
         Component frame = null;
         int result = JOptionPane.showConfirmDialog(
             frame, panel,
-            "Remover Item do buffet",
+            "Inserir Item do buffet",
             JOptionPane.OK_CANCEL_OPTION,
             JOptionPane.PLAIN_MESSAGE
         );
@@ -689,13 +716,16 @@ public class Menu extends javax.swing.JFrame {
         if (result == JOptionPane.OK_OPTION) {
             String nomeItemBuffet = nomeField.getText();
             String nomeEvento = eventoField.getText();
-            if(tipoField.getText().equals("BEBIDA"))
+            if(BEBIDAButton.isSelected())
             {
                 controlador.validarInputsDeRegistroDeItemDoBuffet(nomeEvento, nomeItemBuffet, TipoItem.BEBIDA, Double.parseDouble(custoField.getText()));
             }
-            else if(tipoField.getText().equals("COMIDA"))
+            else if(COMIDAButton.isSelected())
             {
                 controlador.validarInputsDeRegistroDeItemDoBuffet(nomeEvento, nomeItemBuffet, TipoItem.COMIDA, Double.parseDouble(custoField.getText()));
+            }
+            else{
+                this.exibirMensagemDeErro();
             }
             
         }
@@ -709,7 +739,7 @@ public class Menu extends javax.swing.JFrame {
         JTextField funcaoField = new JTextField(15);
         JTextField custoField = new JTextField(15);
         JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
-        panel.add(new JLabel("Nome do Eventot:"));
+        panel.add(new JLabel("Nome do Evento:"));
         panel.add(eventoField);
         panel.add(new JLabel("Nome do Funcionário:"));
         panel.add(nomeField);
@@ -719,6 +749,14 @@ public class Menu extends javax.swing.JFrame {
         panel.add(funcaoField);
         panel.add(new JLabel("Diaria:"));
         panel.add(custoField);
+        
+        Component frame = null;
+        int result = JOptionPane.showConfirmDialog(
+            frame, panel,
+            "Adicionar funcionario",
+            JOptionPane.OK_CANCEL_OPTION,
+            JOptionPane.PLAIN_MESSAGE
+        );
         controlador.adicionarFuncionario(eventoField.getText(), nomeField.getText(), cpfField.getText(), funcaoField.getText(), Double.parseDouble(custoField.getText()));
     }//GEN-LAST:event_inserirFuncionarioActionPerformed
 
