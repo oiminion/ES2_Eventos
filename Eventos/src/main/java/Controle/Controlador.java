@@ -228,6 +228,25 @@ public class Controlador {
         }
     }
     
+    public void adicionarFuncionario(String nomeEvento, String nomeFuncionario, String CPF, String funcao, double diaria)
+    {
+        Evento eve = catalogo.buscarEvento(nomeEvento);
+        if(eve == null)
+        {
+            menu.exibirMensagemDeErro();
+        }
+        else
+        {
+            FactoryFuncionario fFunc = new FactoryFuncionario();
+            Funcionario novo = fFunc.criarFuncionario(nomeFuncionario, CPF, funcao, diaria);
+            novo.calcularPagamentoTotal(eve.getDuracaoEmDias());
+            eve.adicionarFuncionario(novo);
+            eve.calcularCustoTotalEvento();
+            eve.calcularCustoPorConvidado();
+            menu.exibirMensagemDeConfirmacao();
+        }
+    }
+    
     public void validarInputsDeRegistroDeItemDoBuffet(String nomeEvento, String nomeItemBuffet, TipoItem tipo, double custo)
     {
         Evento eve = catalogo.buscarEvento(nomeEvento);
