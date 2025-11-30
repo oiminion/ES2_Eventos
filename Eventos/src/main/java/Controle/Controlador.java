@@ -142,7 +142,7 @@ public class Controlador {
     
     public String exibirelatorioEventos()
     {
-        return catalogo.exibirelatorioEventos();
+        return catalogo.exibirEventos();
     }
     
     public void cancelarEvento(String nomeEvento)

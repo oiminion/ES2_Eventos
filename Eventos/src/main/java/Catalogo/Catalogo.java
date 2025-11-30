@@ -36,7 +36,7 @@ public class Catalogo {
         return null;
     }
     
-    public String exibirelatorioEventos()
+    public String exibirEventos()
     {
         String resultado = "";
         for(Evento i: eventos)
