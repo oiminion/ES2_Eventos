@@ -1,4 +1,4 @@
-package Interface;
+package Interface.Main;
 
 import Controle.Controlador;
 import Modelo.CategoriaCusto;
@@ -14,7 +14,7 @@ import javax.swing.*;
  *
  * @author Sayu
  */
-public class Menu extends javax.swing.JFrame {
+public class Menu extends JFrame {
 
     private Controlador controlador;
 
@@ -108,9 +108,8 @@ public class Menu extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1024, 720));
+        setBounds(new java.awt.Rectangle(0, 0, 300, 425));
         setMinimumSize(new java.awt.Dimension(1024, 720));
-        setPreferredSize(new java.awt.Dimension(1024, 720));
         setSize(new java.awt.Dimension(1024, 720));
 
         exibirRelatorioEventos.setBackground(new java.awt.Color(255, 204, 204));
@@ -296,138 +295,136 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void exibirMensagemDeConfirmacao()
-    {
-        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
-        panel.add(new JLabel("Operação concluída"));
-
-        JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
-    }
-    
-    public void exibirMensagemDeErro()
-    {
-        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
-        panel.add(new JLabel("Erro detectado"));
-
-        JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
-    }
-    
-    private void exibirRelatorioEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exibirRelatorioEventosActionPerformed
+    private void alterarStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarStatusActionPerformed
         // TODO add your handling code here:
-        String texto = controlador.exibirelatorioEventos();
-        JTextArea evento = new JTextArea(texto, 20, 50);
-        evento.setLineWrap(true);
-        evento.setWrapStyleWord(true);
-        evento.setEditable(false);
-
-        JScrollPane scroll = new JScrollPane(evento);
-        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
-        JFrame frame = new JFrame("Exibição de Texto Grande");
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.add(scroll);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }//GEN-LAST:event_exibirRelatorioEventosActionPerformed
-
-    private void buscarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarEventoActionPerformed
-        // TODO add your handling code here:
-        JTextField nomeField = new JTextField(15);
-        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
-        panel.add(new JLabel("Nome do Evento:"));
-        panel.add(nomeField);
-        Component frame = null;
-        int result = JOptionPane.showConfirmDialog(
-                frame, panel,
-                "Buscar Evento",
-                JOptionPane.OK_CANCEL_OPTION,
-                JOptionPane.PLAIN_MESSAGE
-        );
-
-        if (result == JOptionPane.OK_OPTION) {
-            String nomeEvento = nomeField.getText();
-            String texto = controlador.exibirEvento(nomeEvento);
-            
-            JOptionPane.showMessageDialog(null, texto);
-        }
-    }//GEN-LAST:event_buscarEventoActionPerformed
-
-    private void removerFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerFuncionarioActionPerformed
-        // TODO add your handling code here:
-        JTextField nomeField = new JTextField(15);
         JTextField eventoField = new JTextField(15);
+        JRadioButton AGENDAMENTOButton = new JRadioButton("AGENDAMENTO");
+        AGENDAMENTOButton.setActionCommand("AGENDAMENTO");
+        JRadioButton EM_ANDAMENTOButton = new JRadioButton("EM_ANDAMENTO");
+        EM_ANDAMENTOButton.setActionCommand("EM_ANDAMENTO");
+        JRadioButton ENCERRADOButton = new JRadioButton("ENCERRADO");
+        ENCERRADOButton.setActionCommand("ENCERRADO");
         JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
-        panel.add(new JLabel("Nome do Funcionario:"));
-        panel.add(nomeField);
         panel.add(new JLabel("Nome do Evento:"));
         panel.add(eventoField);
+        panel.add(new JLabel("Novo status AGENDAMENTO, EM_ANDAMENTO, ENCERRADO:"));
+        panel.add(new JLabel(""));
+        panel.add(AGENDAMENTOButton);
+        panel.add(EM_ANDAMENTOButton);
+        panel.add(ENCERRADOButton);
 
         Component frame = null;
+
         int result = JOptionPane.showConfirmDialog(
             frame, panel,
-            "Remover Funcionario",
+            "Preencha as informações",
             JOptionPane.OK_CANCEL_OPTION,
             JOptionPane.PLAIN_MESSAGE
         );
 
         if (result == JOptionPane.OK_OPTION) {
-            String nomeFuncionario = nomeField.getText();
             String nomeEvento = eventoField.getText();
-            controlador.removerFuncionario(nomeEvento, nomeFuncionario);
+            if(AGENDAMENTOButton.isSelected())
+            {
+                controlador.alterarStatus(nomeEvento, Status.AGENDAMENTO);
+            }
+            else if(EM_ANDAMENTOButton.isSelected())
+            {
+                controlador.alterarStatus(nomeEvento, Status.EM_ANDAMENTO);
+            }
+            else if(ENCERRADOButton.isSelected())
+            {
+                controlador.alterarStatus(nomeEvento, Status.ENCERRADO);
+            }
+            else
+            {
+                this.exibirMensagemDeErro();
+            }
         }
-    }//GEN-LAST:event_removerFuncionarioActionPerformed
 
-    private void removerItemBuffetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerItemBuffetActionPerformed
+    }//GEN-LAST:event_alterarStatusActionPerformed
+
+    private void cancelarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarEventoActionPerformed
         // TODO add your handling code here:
-        JTextField nomeField = new JTextField(15);
         JTextField eventoField = new JTextField(15);
         JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
-        panel.add(new JLabel("Nome do Item do buffet:"));
-        panel.add(nomeField);
         panel.add(new JLabel("Nome do Evento:"));
         panel.add(eventoField);
 
         Component frame = null;
+
         int result = JOptionPane.showConfirmDialog(
             frame, panel,
-            "Remover Item do buffet",
+            "Preencha as informações",
             JOptionPane.OK_CANCEL_OPTION,
             JOptionPane.PLAIN_MESSAGE
         );
 
         if (result == JOptionPane.OK_OPTION) {
-            String nomeItemBuffet = nomeField.getText();
             String nomeEvento = eventoField.getText();
-            controlador.removerItemBuffet(nomeEvento, nomeItemBuffet);
+            controlador.cancelarEvento(nomeEvento);
         }
-    }//GEN-LAST:event_removerItemBuffetActionPerformed
+    }//GEN-LAST:event_cancelarEventoActionPerformed
 
-    private void removerDespesaAdicionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerDespesaAdicionalActionPerformed
+    private void registrarDespesaAdicionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarDespesaAdicionalActionPerformed
         // TODO add your handling code here:
-        JTextField nomeField = new JTextField(15);
         JTextField eventoField = new JTextField(15);
+        JTextField nomeField = new JTextField(15);
+
+        JRadioButton CUSTO_FIXOButton = new JRadioButton("CUSTO_FIXO");
+        CUSTO_FIXOButton.setActionCommand("CUSTO_FIXO");
+        JRadioButton CUSTO_VARIAVELButton = new JRadioButton("CUSTO_VARIAVEL");
+        CUSTO_VARIAVELButton.setActionCommand("CUSTO_VARIAVEL");
+
+        ButtonGroup group = new ButtonGroup();
+        group.add(CUSTO_FIXOButton);
+        group.add(CUSTO_VARIAVELButton);
+
+        JTextField descricaoField = new JTextField(15);
+        JTextField custoPorPessoaField = new JTextField(15);
         JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
+        panel.add(new JLabel("Nome do Evento:"));
+        panel.add(eventoField);
         panel.add(new JLabel("Nome da Despesa adicional:"));
         panel.add(nomeField);
-        panel.add(new JLabel("Nome do Evento:"));
-        panel.add(eventoField);
+
+        panel.add(new JLabel("Categoria CUSTO_FIXO ou CUSTO_VARIAVEL:"));
+        panel.add(new JLabel(""));
+        panel.add(CUSTO_FIXOButton);
+        panel.add(CUSTO_VARIAVELButton);
+
+        panel.add(new JLabel("Descrição:"));
+        panel.add(descricaoField);
+        panel.add(new JLabel("Custo por pessoa:"));
+        panel.add(custoPorPessoaField);
 
         Component frame = null;
         int result = JOptionPane.showConfirmDialog(
             frame, panel,
-            "Remover Despesa Adicional",
+            "Preencha as informações",
             JOptionPane.OK_CANCEL_OPTION,
             JOptionPane.PLAIN_MESSAGE
         );
 
         if (result == JOptionPane.OK_OPTION) {
-            String nomeDespesaAdicional = nomeField.getText();
             String nomeEvento = eventoField.getText();
-            controlador.removerDespesaAdicional(nomeEvento, nomeDespesaAdicional);
+            String nomeDespesa = nomeField.getText();
+            String descricao = descricaoField.getText();
+
+            if(CUSTO_FIXOButton.isSelected())
+            {
+                controlador.validarInputsDeRegistroDeDespesaAdicional(nomeEvento, nomeDespesa, CategoriaCusto.CUSTO_FIXO, descricao, Double.parseDouble(custoPorPessoaField.getText()));
+            }
+            else if(CUSTO_VARIAVELButton.isSelected())
+            {
+                controlador.validarInputsDeRegistroDeDespesaAdicional(nomeEvento, nomeDespesa, CategoriaCusto.CUSTO_VARIAVEL, descricao, Double.parseDouble(custoPorPessoaField.getText()));
+            }
+            else
+            {
+                this.exibirMensagemDeErro();
+            }
         }
-    }//GEN-LAST:event_removerDespesaAdicionalActionPerformed
+    }//GEN-LAST:event_registrarDespesaAdicionalActionPerformed
 
     private void registrarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarEventoActionPerformed
         // TODO add your handling code here:
@@ -461,15 +458,15 @@ public class Menu extends javax.swing.JFrame {
         panel.add(inicioField);
         panel.add(new JLabel("Data fim (exmplo:2025-11-03 10:30:00):"));
         panel.add(fimField);
-        
+
         Component frame = null;
-        
+
         // Exibindo o JOptionPane
         int result = JOptionPane.showConfirmDialog(
-                frame, panel,
-                "Preencha as informações",
-                JOptionPane.OK_CANCEL_OPTION,
-                JOptionPane.PLAIN_MESSAGE
+            frame, panel,
+            "Preencha as informações",
+            JOptionPane.OK_CANCEL_OPTION,
+            JOptionPane.PLAIN_MESSAGE
         );
 
         // Pegando os valores se o usuário clicar em OK
@@ -481,203 +478,151 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_registrarEventoActionPerformed
 
-    private void registrarDespesaAdicionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarDespesaAdicionalActionPerformed
+    private void removerDespesaAdicionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerDespesaAdicionalActionPerformed
         // TODO add your handling code here:
-        JTextField eventoField = new JTextField(15);
         JTextField nomeField = new JTextField(15);
-        
-        JRadioButton CUSTO_FIXOButton = new JRadioButton("CUSTO_FIXO");
-        CUSTO_FIXOButton.setActionCommand("CUSTO_FIXO");
-        JRadioButton CUSTO_VARIAVELButton = new JRadioButton("CUSTO_VARIAVEL");
-        CUSTO_VARIAVELButton.setActionCommand("CUSTO_VARIAVEL");
-        
-        ButtonGroup group = new ButtonGroup();
-        group.add(CUSTO_FIXOButton);
-        group.add(CUSTO_VARIAVELButton);
-        
-        JTextField descricaoField = new JTextField(15);
-        JTextField custoPorPessoaField = new JTextField(15);
+        JTextField eventoField = new JTextField(15);
         JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
-        panel.add(new JLabel("Nome do Evento:"));
-        panel.add(eventoField);
         panel.add(new JLabel("Nome da Despesa adicional:"));
         panel.add(nomeField);
-        
-        panel.add(new JLabel("Categoria CUSTO_FIXO ou CUSTO_VARIAVEL:"));
-        panel.add(new JLabel(""));
-        panel.add(CUSTO_FIXOButton);
-        panel.add(CUSTO_VARIAVELButton);
-        
-        panel.add(new JLabel("Descrição:"));
-        panel.add(descricaoField);
-        panel.add(new JLabel("Custo por pessoa:"));
-        panel.add(custoPorPessoaField);
-        
-        
-
-        Component frame = null;
-        int result = JOptionPane.showConfirmDialog(
-            frame, panel,
-            "Preencha as informações",
-            JOptionPane.OK_CANCEL_OPTION,
-            JOptionPane.PLAIN_MESSAGE
-        );
-
-        if (result == JOptionPane.OK_OPTION) {
-            String nomeEvento = eventoField.getText();
-            String nomeDespesa = nomeField.getText();
-            String descricao = descricaoField.getText();
-            
-            if(CUSTO_FIXOButton.isSelected())
-            {
-                controlador.validarInputsDeRegistroDeDespesaAdicional(nomeEvento, nomeDespesa, CategoriaCusto.CUSTO_FIXO, descricao, Double.parseDouble(custoPorPessoaField.getText()));
-            }
-            else if(CUSTO_VARIAVELButton.isSelected())
-            {
-                controlador.validarInputsDeRegistroDeDespesaAdicional(nomeEvento, nomeDespesa, CategoriaCusto.CUSTO_VARIAVEL, descricao, Double.parseDouble(custoPorPessoaField.getText()));
-            }
-            else
-            {
-                this.exibirMensagemDeErro();
-            }
-        }
-    }//GEN-LAST:event_registrarDespesaAdicionalActionPerformed
-
-    private void cancelarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarEventoActionPerformed
-        // TODO add your handling code here:
-        JTextField eventoField = new JTextField(15);
-        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
         panel.add(new JLabel("Nome do Evento:"));
         panel.add(eventoField);
-        
+
         Component frame = null;
-        
         int result = JOptionPane.showConfirmDialog(
             frame, panel,
-            "Preencha as informações",
+            "Remover Despesa Adicional",
             JOptionPane.OK_CANCEL_OPTION,
             JOptionPane.PLAIN_MESSAGE
         );
 
         if (result == JOptionPane.OK_OPTION) {
+            String nomeDespesaAdicional = nomeField.getText();
             String nomeEvento = eventoField.getText();
-            controlador.cancelarEvento(nomeEvento);
+            controlador.removerDespesaAdicional(nomeEvento, nomeDespesaAdicional);
         }
-    }//GEN-LAST:event_cancelarEventoActionPerformed
+    }//GEN-LAST:event_removerDespesaAdicionalActionPerformed
 
-    private void alterarStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarStatusActionPerformed
+    private void removerItemBuffetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerItemBuffetActionPerformed
         // TODO add your handling code here:
-        JTextField eventoField = new JTextField(15);
-        JRadioButton AGENDAMENTOButton = new JRadioButton("AGENDAMENTO");
-        AGENDAMENTOButton.setActionCommand("AGENDAMENTO");
-        JRadioButton EM_ANDAMENTOButton = new JRadioButton("EM_ANDAMENTO");
-        EM_ANDAMENTOButton.setActionCommand("EM_ANDAMENTO");
-        JRadioButton ENCERRADOButton = new JRadioButton("ENCERRADO");
-        ENCERRADOButton.setActionCommand("ENCERRADO");
-        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
-        panel.add(new JLabel("Nome do Evento:"));
-        panel.add(eventoField);
-        panel.add(new JLabel("Novo status AGENDAMENTO, EM_ANDAMENTO, ENCERRADO:"));
-        panel.add(new JLabel(""));
-        panel.add(AGENDAMENTOButton);
-        panel.add(EM_ANDAMENTOButton);
-        panel.add(ENCERRADOButton);
-        
-        Component frame = null;
-        
-        int result = JOptionPane.showConfirmDialog(
-            frame, panel,
-            "Preencha as informações",
-            JOptionPane.OK_CANCEL_OPTION,
-            JOptionPane.PLAIN_MESSAGE
-        );
-
-        if (result == JOptionPane.OK_OPTION) {
-            String nomeEvento = eventoField.getText();
-            if(AGENDAMENTOButton.isSelected())
-            {
-                controlador.alterarStatus(nomeEvento, Status.AGENDAMENTO);
-            }
-            else if(EM_ANDAMENTOButton.isSelected())
-            {
-                controlador.alterarStatus(nomeEvento, Status.EM_ANDAMENTO);
-            }
-            else if(ENCERRADOButton.isSelected())
-            {
-                controlador.alterarStatus(nomeEvento, Status.ENCERRADO);
-            }
-            else
-            {
-                this.exibirMensagemDeErro();
-            }
-        }
-        
-    }//GEN-LAST:event_alterarStatusActionPerformed
-
-    private void alterarDespesasAdicionaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarDespesasAdicionaisActionPerformed
-        // TODO add your handling code here:
-        JTextField eventoField = new JTextField(15);
         JTextField nomeField = new JTextField(15);
-        JTextField novonomeField = new JTextField(15);
-        JTextField novacatField = new JTextField(15);
-        JTextField novadescricaoField = new JTextField(15);
-        JTextField novocustoPorPessoaField = new JTextField(15);
-        JPanel panel = new JPanel(new GridLayout(0, 3, 7, 5));
+        JTextField eventoField = new JTextField(15);
+        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
+        panel.add(new JLabel("Nome do Item do buffet:"));
+        panel.add(nomeField);
         panel.add(new JLabel("Nome do Evento:"));
         panel.add(eventoField);
-        panel.add(new JLabel(""));
-        panel.add(new JLabel("Nome da Despesa adicional:"));
-        panel.add(nomeField);
-        panel.add(new JLabel(""));
-        panel.add(new JLabel("Novo Nome da Despesa adicional:"));
-        panel.add(novonomeField);
-        panel.add(new JLabel(""));
-        
-        panel.add(new JLabel("Categoria Custo:"));
-        JRadioButton CUSTO_FIXOButton = new JRadioButton("CUSTO_FIXO");
-        CUSTO_FIXOButton.setActionCommand("CUSTO_FIXO");
-        panel.add(CUSTO_FIXOButton);
-        JRadioButton CUSTO_VARIAVELButton = new JRadioButton("CUSTO_VARIAVEL");
-        CUSTO_VARIAVELButton.setActionCommand("CUSTO_VARIAVEL");
-        panel.add(CUSTO_VARIAVELButton);
-        
-        panel.add(new JLabel("Nova Descrição:"));
-        panel.add(novadescricaoField);
-        panel.add(new JLabel(""));
-        panel.add(new JLabel("Novo Custo por pessoa:"));
-        panel.add(novocustoPorPessoaField);
-        panel.add(new JLabel(""));
-        
-        
 
         Component frame = null;
         int result = JOptionPane.showConfirmDialog(
             frame, panel,
-            "Preencha as informações",
+            "Remover Item do buffet",
             JOptionPane.OK_CANCEL_OPTION,
             JOptionPane.PLAIN_MESSAGE
         );
 
         if (result == JOptionPane.OK_OPTION) {
+            String nomeItemBuffet = nomeField.getText();
             String nomeEvento = eventoField.getText();
-            String nomeDespesa = nomeField.getText();
-            String descricao = novadescricaoField.getText();
-            
-            
-            if(CUSTO_FIXOButton.isSelected())
-            {
-                controlador.validarInputsDeAlteracaoDeDespesaAdicional(nomeEvento, nomeDespesa, novonomeField.getText(), CategoriaCusto.CUSTO_FIXO, descricao, Double.parseDouble(novocustoPorPessoaField.getText()));
-            }
-            else if(CUSTO_VARIAVELButton.isSelected())
-            {
-                controlador.validarInputsDeAlteracaoDeDespesaAdicional(nomeEvento, nomeDespesa, novonomeField.getText(), CategoriaCusto.CUSTO_VARIAVEL, descricao, Double.parseDouble(novocustoPorPessoaField.getText()));
-            }
-            else
-            {
-                this.exibirMensagemDeErro();
-            }
+            controlador.removerItemBuffet(nomeEvento, nomeItemBuffet);
         }
-    }//GEN-LAST:event_alterarDespesasAdicionaisActionPerformed
+    }//GEN-LAST:event_removerItemBuffetActionPerformed
+
+    private void removerFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerFuncionarioActionPerformed
+        // TODO add your handling code here:
+        JTextField nomeField = new JTextField(15);
+        JTextField eventoField = new JTextField(15);
+        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
+        panel.add(new JLabel("Nome do Funcionario:"));
+        panel.add(nomeField);
+        panel.add(new JLabel("Nome do Evento:"));
+        panel.add(eventoField);
+
+        Component frame = null;
+        int result = JOptionPane.showConfirmDialog(
+            frame, panel,
+            "Remover Funcionario",
+            JOptionPane.OK_CANCEL_OPTION,
+            JOptionPane.PLAIN_MESSAGE
+        );
+
+        if (result == JOptionPane.OK_OPTION) {
+            String nomeFuncionario = nomeField.getText();
+            String nomeEvento = eventoField.getText();
+            controlador.removerFuncionario(nomeEvento, nomeFuncionario);
+        }
+    }//GEN-LAST:event_removerFuncionarioActionPerformed
+
+    private void buscarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarEventoActionPerformed
+        // TODO add your handling code here:
+        JTextField nomeField = new JTextField(15);
+        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
+        panel.add(new JLabel("Nome do Evento:"));
+        panel.add(nomeField);
+        Component frame = null;
+        int result = JOptionPane.showConfirmDialog(
+            frame, panel,
+            "Buscar Evento",
+            JOptionPane.OK_CANCEL_OPTION,
+            JOptionPane.PLAIN_MESSAGE
+        );
+
+        if (result == JOptionPane.OK_OPTION) {
+            String nomeEvento = nomeField.getText();
+            String texto = controlador.exibirEvento(nomeEvento);
+
+            JOptionPane.showMessageDialog(null, texto);
+        }
+    }//GEN-LAST:event_buscarEventoActionPerformed
+
+    private void inserirFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inserirFuncionarioActionPerformed
+        // TODO add your handling code here:
+        JTextField nomeField = new JTextField(15);
+        JTextField eventoField = new JTextField(15);
+        JTextField cpfField = new JTextField(15);
+        JTextField funcaoField = new JTextField(15);
+        JTextField custoField = new JTextField(15);
+        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
+        panel.add(new JLabel("Nome do Evento:"));
+        panel.add(eventoField);
+        panel.add(new JLabel("Nome do Funcionário:"));
+        panel.add(nomeField);
+        panel.add(new JLabel("CPF:"));
+        panel.add(cpfField);
+        panel.add(new JLabel("Função:"));
+        panel.add(funcaoField);
+        panel.add(new JLabel("Diaria:"));
+        panel.add(custoField);
+
+        Component frame = null;
+        int result = JOptionPane.showConfirmDialog(
+            frame, panel,
+            "Adicionar funcionario",
+            JOptionPane.OK_CANCEL_OPTION,
+            JOptionPane.PLAIN_MESSAGE
+        );
+        controlador.adicionarFuncionario(eventoField.getText(), nomeField.getText(), cpfField.getText(), funcaoField.getText(), Double.parseDouble(custoField.getText()));
+    }//GEN-LAST:event_inserirFuncionarioActionPerformed
+
+    private void exibirRelatorioEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exibirRelatorioEventosActionPerformed
+        // TODO add your handling code here:
+        String texto = controlador.exibirelatorioEventos();
+        JTextArea evento = new JTextArea(texto, 20, 50);
+        evento.setLineWrap(true);
+        evento.setWrapStyleWord(true);
+        evento.setEditable(false);
+
+        JScrollPane scroll = new JScrollPane(evento);
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        JFrame frame = new JFrame("Exibição de Texto Grande");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.add(scroll);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }//GEN-LAST:event_exibirRelatorioEventosActionPerformed
 
     private void inserirItemBuffetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inserirItemBuffetActionPerformed
         // TODO add your handling code here:
@@ -693,18 +638,18 @@ public class Menu extends javax.swing.JFrame {
         panel.add(eventoField);
         panel.add(new JLabel(""));
         panel.add(new JLabel("Tipo BEBIDA ou COMIDA:"));
-        
+
         JRadioButton BEBIDAButton = new JRadioButton("BEBIDA");
         BEBIDAButton.setActionCommand("BEBIDA");
         panel.add(BEBIDAButton);
         JRadioButton COMIDAButton = new JRadioButton("COMIDA");
         COMIDAButton.setActionCommand("COMIDA");
         panel.add(COMIDAButton);
-        
+
         panel.add(new JLabel("Custo:"));
         panel.add(custoField);
         panel.add(new JLabel(""));
-        
+
         Component frame = null;
         int result = JOptionPane.showConfirmDialog(
             frame, panel,
@@ -727,39 +672,88 @@ public class Menu extends javax.swing.JFrame {
             else{
                 this.exibirMensagemDeErro();
             }
-            
+
         }
     }//GEN-LAST:event_inserirItemBuffetActionPerformed
 
-    private void inserirFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inserirFuncionarioActionPerformed
+    private void alterarDespesasAdicionaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarDespesasAdicionaisActionPerformed
         // TODO add your handling code here:
-        JTextField nomeField = new JTextField(15);
         JTextField eventoField = new JTextField(15);
-        JTextField cpfField = new JTextField(15);
-        JTextField funcaoField = new JTextField(15);
-        JTextField custoField = new JTextField(15);
-        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
+        JTextField nomeField = new JTextField(15);
+        JTextField novonomeField = new JTextField(15);
+        JTextField novacatField = new JTextField(15);
+        JTextField novadescricaoField = new JTextField(15);
+        JTextField novocustoPorPessoaField = new JTextField(15);
+        JPanel panel = new JPanel(new GridLayout(0, 3, 7, 5));
         panel.add(new JLabel("Nome do Evento:"));
         panel.add(eventoField);
-        panel.add(new JLabel("Nome do Funcionário:"));
+        panel.add(new JLabel(""));
+        panel.add(new JLabel("Nome da Despesa adicional:"));
         panel.add(nomeField);
-        panel.add(new JLabel("CPF:"));
-        panel.add(cpfField);
-        panel.add(new JLabel("Função:"));
-        panel.add(funcaoField);
-        panel.add(new JLabel("Diaria:"));
-        panel.add(custoField);
-        
+        panel.add(new JLabel(""));
+        panel.add(new JLabel("Novo Nome da Despesa adicional:"));
+        panel.add(novonomeField);
+        panel.add(new JLabel(""));
+
+        panel.add(new JLabel("Categoria Custo:"));
+        JRadioButton CUSTO_FIXOButton = new JRadioButton("CUSTO_FIXO");
+        CUSTO_FIXOButton.setActionCommand("CUSTO_FIXO");
+        panel.add(CUSTO_FIXOButton);
+        JRadioButton CUSTO_VARIAVELButton = new JRadioButton("CUSTO_VARIAVEL");
+        CUSTO_VARIAVELButton.setActionCommand("CUSTO_VARIAVEL");
+        panel.add(CUSTO_VARIAVELButton);
+
+        panel.add(new JLabel("Nova Descrição:"));
+        panel.add(novadescricaoField);
+        panel.add(new JLabel(""));
+        panel.add(new JLabel("Novo Custo por pessoa:"));
+        panel.add(novocustoPorPessoaField);
+        panel.add(new JLabel(""));
+
         Component frame = null;
         int result = JOptionPane.showConfirmDialog(
             frame, panel,
-            "Adicionar funcionario",
+            "Preencha as informações",
             JOptionPane.OK_CANCEL_OPTION,
             JOptionPane.PLAIN_MESSAGE
         );
-        controlador.adicionarFuncionario(eventoField.getText(), nomeField.getText(), cpfField.getText(), funcaoField.getText(), Double.parseDouble(custoField.getText()));
-    }//GEN-LAST:event_inserirFuncionarioActionPerformed
 
+        if (result == JOptionPane.OK_OPTION) {
+            String nomeEvento = eventoField.getText();
+            String nomeDespesa = nomeField.getText();
+            String descricao = novadescricaoField.getText();
+
+            if(CUSTO_FIXOButton.isSelected())
+            {
+                controlador.validarInputsDeAlteracaoDeDespesaAdicional(nomeEvento, nomeDespesa, novonomeField.getText(), CategoriaCusto.CUSTO_FIXO, descricao, Double.parseDouble(novocustoPorPessoaField.getText()));
+            }
+            else if(CUSTO_VARIAVELButton.isSelected())
+            {
+                controlador.validarInputsDeAlteracaoDeDespesaAdicional(nomeEvento, nomeDespesa, novonomeField.getText(), CategoriaCusto.CUSTO_VARIAVEL, descricao, Double.parseDouble(novocustoPorPessoaField.getText()));
+            }
+            else
+            {
+                this.exibirMensagemDeErro();
+            }
+        }
+    }//GEN-LAST:event_alterarDespesasAdicionaisActionPerformed
+
+    public void exibirMensagemDeConfirmacao()
+    {
+        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
+        panel.add(new JLabel("Operação concluída"));
+
+        JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
+    }
+    
+    public void exibirMensagemDeErro()
+    {
+        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
+        panel.add(new JLabel("Erro detectado"));
+
+        JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
+    }
+    
     /**
      * @param args the command line arguments
      */
